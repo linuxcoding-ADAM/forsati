@@ -26,12 +26,16 @@
 }
 
 /* Reusable brand wordmark — use on every "Forsati" text.
-   Per request, this is now a plain/normal sans (inherits the body font),
-   not the decorative italic display face. */
+   A plain/normal sans (inherits the body font), not the decorative italic
+   display face — but tinted with the brand's eco-green and given a touch of
+   weight + tracking so the name reads as part of the theme.
+   The green matches `primary` (#22c55e) in tailwind.config.ts. */
 .font-forsati {
   font-family: inherit;
   font-style: normal;
-  letter-spacing: normal;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #22c55e;
 }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { @apply bg-background; }
