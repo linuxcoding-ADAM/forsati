@@ -18,10 +18,7 @@ export function SplashScreen() {
           className="rounded-2xl shadow-2xl shadow-primary/20"
           priority
         />
-        <h1
-          className="text-2xl font-black text-white italic tracking-tighter"
-          style={{ fontFamily: "'Sacrifice', 'Inter', system-ui, sans-serif" }}
-        >
+        <h1 className="font-forsati text-2xl font-bold text-white">
           Forsati
         </h1>
         {/* Thin eco-green progress sliver — subtle, not a spinner */}

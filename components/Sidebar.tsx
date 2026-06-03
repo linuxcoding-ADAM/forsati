@@ -73,11 +73,8 @@ export function Sidebar() {
         />
         {!collapsed && (
           <div className="overflow-hidden">
-            {/* Premium wordmark */}
-            <span
-              className="block font-black text-2xl text-white tracking-tighter italic leading-none"
-              style={{ fontFamily: "'Sacrifice', 'Inter', system-ui, sans-serif" }}
-            >
+            {/* Brand wordmark */}
+            <span className="font-forsati block font-bold text-2xl text-white leading-none">
               Forsati
             </span>
           </div>

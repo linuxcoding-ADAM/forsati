@@ -59,10 +59,7 @@ export default function SignInPage() {
 
         <div className="flex flex-col items-center gap-2 mb-8">
           <Image src="/logo.png" alt="Forsati ODEJ" width={96} height={96} className="rounded-3xl shadow-xl shadow-primary/10" />
-          <span 
-            className="font-black text-white text-3xl tracking-tighter italic"
-            style={{ fontFamily: "'Sacrifice', 'Inter', system-ui, sans-serif" }}
-          >
+          <span className="font-forsati font-bold text-white text-3xl">
             Forsati
           </span>
         </div>

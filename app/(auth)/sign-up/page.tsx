@@ -61,7 +61,7 @@ export default function SignUpPage() {
 
         <div className="flex flex-col items-center gap-2 mb-8">
           <Image src="/logo.png" alt="Forsati ODEJ" width={96} height={96} className="rounded-3xl shadow-xl shadow-primary/10" priority />
-          <span className="font-forsati font-black text-white text-3xl">Forsati</span>
+          <span className="font-forsati font-bold text-white text-3xl">Forsati</span>
         </div>
 
         <div className="bg-surface p-8 rounded-2xl border border-border">

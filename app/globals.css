@@ -25,11 +25,13 @@
   }
 }
 
-/* Reusable brand wordmark — use on every "Forsati" text. */
+/* Reusable brand wordmark — use on every "Forsati" text.
+   Per request, this is now a plain/normal sans (inherits the body font),
+   not the decorative italic display face. */
 .font-forsati {
-  font-family: 'Sacrifice', 'Inter', system-ui, sans-serif;
-  font-style: italic;
-  letter-spacing: -0.03em;
+  font-family: inherit;
+  font-style: normal;
+  letter-spacing: normal;
 }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { @apply bg-background; }

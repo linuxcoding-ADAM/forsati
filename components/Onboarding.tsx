@@ -108,10 +108,7 @@ export function Onboarding() {
         <div className="text-center mb-10">
           <div className="flex items-center justify-center gap-3 font-bold text-2xl mb-6">
             <Image src="/logo.png" alt="Forsati" width={48} height={48} className="rounded-xl shadow-lg shadow-primary/10" priority />
-            <span
-              className="font-black text-white text-3xl tracking-tighter italic"
-              style={{ fontFamily: "'Sacrifice', 'Inter', system-ui, sans-serif" }}
-            >
+            <span className="font-forsati font-bold text-white text-3xl">
               Forsati
             </span>
           </div>

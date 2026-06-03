@@ -4,7 +4,7 @@ import { useLanguage } from '@/lib/contexts/LanguageContext';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import { Language } from '@/lib/contexts/LanguageContext';
 import { canTypePhone, canTypeIdNumber, PHONE_LENGTH, ID_MAX_LENGTH } from '@/lib/validation';
-import { Globe, MapPin, Tag, Bell, User, CheckCircle2, Check, Pencil, ChevronDown, Award } from 'lucide-react';
+import { Globe, MapPin, Tag, Bell, User, CheckCircle2, Check, Pencil, ChevronDown, Award, LogOut } from 'lucide-react';
 
 const INTERESTS = [
   'tech', 'ai', 'robotics', 'science', 'sport', 'music',
@@ -95,7 +95,7 @@ function SummaryRow({ label, value, fallback = 'Not set' }: { label: string; val
 
 export default function Settings() {
   const { t, language, setLanguage } = useLanguage();
-  const { user, preferences, updatePreferences } = useAuth();
+  const { user, preferences, updatePreferences, logout } = useAuth();
 
   // ── Personal Info ────────────────────────────────────────────────────────
   const [firstName,    setFirstName]    = useState('');
@@ -369,6 +369,14 @@ export default function Settings() {
         className="w-full bg-primary text-black font-bold py-3 rounded-xl disabled:opacity-60 transition-all hover:brightness-110"
       >
         {saving ? t('common', 'loading') : saved ? `✓ ${t('settings', 'saved')}` : t('settings', 'saveChanges')}
+      </button>
+
+      {/* ── Sign out (mobile only — the desktop sidebar already has logout) ── */}
+      <button
+        onClick={logout}
+        className="md:hidden w-full flex items-center justify-center gap-2 bg-surface border border-border text-red-400 font-semibold py-3 rounded-xl hover:bg-white/5 transition-colors"
+      >
+        <LogOut size={18} /> {t('nav', 'logout')}
       </button>
     </div>
   );

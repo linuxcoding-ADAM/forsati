@@ -2,14 +2,16 @@ import './globals.css';
 import { AppProviders } from '@/components/providers/AppProviders';
 import type { Metadata, Viewport } from 'next';
 
-// Pinch-zoom stays ENABLED — disabling it (user-scalable=no / maximum-scale=1)
-// fails Lighthouse's accessibility audit. The "page jumps/zooms on its own"
-// problem on iOS is the focus auto-zoom that fires when an input's font-size is
-// < 16px; that's killed in globals.css (form controls are forced to 16px on
-// small screens), so the layout stays stable AND users can still zoom.
+// Zoom is locked on phones (no pinch-zoom, no iOS focus auto-zoom) so the layout
+// stays visually stable, as requested. The globals.css rule that forces form
+// controls to 16px on small screens still belts-and-suspenders the iOS
+// focus-zoom case. Note: locking zoom does cost a few points on Lighthouse's
+// accessibility audit — that's an accepted trade for the stable mobile layout.
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   themeColor: '#0a0a0a',
 };
 

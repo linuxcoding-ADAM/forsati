@@ -78,10 +78,7 @@ function AdminLogin({ onSuccess }: { onSuccess: (user: User) => void }) {
         <div className="flex flex-col items-center mb-8 gap-3">
           <Image src="/logo.png" alt="ODEJ Forsati" width={96} height={96} className="rounded-3xl shadow-xl shadow-primary/10" />
           <div className="text-center">
-            <h1 
-              className="text-2xl font-black text-white italic tracking-tighter"
-              style={{ fontFamily: "'Sacrifice', 'Inter', system-ui, sans-serif" }}
-            >
+            <h1 className="font-forsati text-2xl font-bold text-white">
               Forsati Admin
             </h1>
             <p className="text-xs text-textMuted mt-1">ODEJ Bejaia — Administration</p>
