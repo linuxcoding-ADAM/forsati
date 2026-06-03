@@ -2,13 +2,14 @@ import './globals.css';
 import { AppProviders } from '@/components/providers/AppProviders';
 import type { Metadata, Viewport } from 'next';
 
-// Lock the layout on mobile: no pinch-zoom and no iOS focus-zoom (which fires
-// when an input's font-size is < 16px), so the UI stays visually stable.
+// Pinch-zoom stays ENABLED — disabling it (user-scalable=no / maximum-scale=1)
+// fails Lighthouse's accessibility audit. The "page jumps/zooms on its own"
+// problem on iOS is the focus auto-zoom that fires when an input's font-size is
+// < 16px; that's killed in globals.css (form controls are forced to 16px on
+// small screens), so the layout stays stable AND users can still zoom.
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
   themeColor: '#0a0a0a',
 };
 
@@ -31,8 +32,12 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Default lang/dir match the default language (Arabic). LanguageContext updates
+  // these on the client when the user switches language — but having them in the
+  // initial HTML satisfies the "html element has a [lang] attribute" a11y audit
+  // even before hydration.
   return (
-    <html suppressHydrationWarning>
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body className="bg-background text-gray-100">
         <AppProviders>{children}</AppProviders>
       </body>

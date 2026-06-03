@@ -20,6 +20,7 @@ export default function Landing() {
           <select
             value={language}
             onChange={e => setLanguage(e.target.value as Language)}
+            aria-label={t('settings', 'language')}
             className="bg-surface text-sm border border-border rounded-lg px-2 py-1.5 outline-none focus:border-primary text-white"
           >
             <option value="ar">العربية</option>

@@ -49,6 +49,7 @@ export default function SignUpPage() {
           <select
             value={language}
             onChange={e => setLanguage(e.target.value as Language)}
+            aria-label={t('settings', 'language')}
             className="bg-surface border border-border rounded-lg px-3 py-1.5 text-sm text-white outline-none"
           >
             <option value="ar">العربية</option>
@@ -76,6 +77,7 @@ export default function SignUpPage() {
                 value={name}
                 onChange={e => setName(e.target.value)}
                 required
+                aria-label={t('auth', 'fullName')}
                 className="w-full bg-background border border-border rounded-xl px-4 py-3 text-white focus:border-primary outline-none text-sm transition-colors"
               />
             </div>
@@ -86,6 +88,7 @@ export default function SignUpPage() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
+                aria-label={t('auth', 'email')}
                 className="w-full bg-background border border-border rounded-xl px-4 py-3 text-white focus:border-primary outline-none text-sm transition-colors"
               />
             </div>
@@ -97,6 +100,7 @@ export default function SignUpPage() {
                 onChange={e => setPassword(e.target.value)}
                 required
                 minLength={6}
+                aria-label={t('auth', 'password')}
                 className="w-full bg-background border border-border rounded-xl px-4 py-3 text-white focus:border-primary outline-none text-sm transition-colors"
               />
             </div>

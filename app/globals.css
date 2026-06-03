@@ -15,6 +15,14 @@
 @layer base {
   :root { color-scheme: dark; }
   body { @apply bg-background text-gray-100 font-sans antialiased selection:bg-primary/30 selection:text-white; }
+
+  /* Prevent iOS Safari from auto-zooming into a focused field (it does this
+     whenever the control's font-size is < 16px). Visually identical on desktop;
+     only the rendered text size of form controls on phones is nudged to 16px,
+     which keeps the viewport stable while leaving pinch-zoom fully available. */
+  @media (max-width: 767px) {
+    input, select, textarea { font-size: 16px; }
+  }
 }
 
 /* Reusable brand wordmark — use on every "Forsati" text. */
