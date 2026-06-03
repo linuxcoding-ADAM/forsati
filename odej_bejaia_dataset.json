@@ -1,0 +1,1784 @@
+{
+  "metadata": {
+    "title": "ODEJ Bejaia – Youth Establishments Dataset",
+    "generated": "2026-06-02",
+    "source": "https://odejbejaia-dz.com (official institution listing pages)",
+    "wilaya": "Bejaia",
+    "wilaya_code": "06",
+    "scalable_to": "58 wilayas (same schema, add rows with different 'wilaya')",
+    "license": "Data sourced from public ODEJ Bejaia website. Verify before production use.",
+    "notes": [
+      "Phone numbers reconstructed from the site's RTL display order (e.g. '36,49,33,(034)' -> '034 33 49 36'). Same digits, un-reversed.",
+      "GPS coordinates are NOT published on the source site. 'coordinates' is null for every entry and MUST be geocoded at commune level before mapping. Do not invent exact coordinates.",
+      "activity_tags are derived from each category's official 'missions' text on the site, not assigned arbitrarily.",
+      "data_quality_flags capture inconsistencies present on the source (shared emails, missing fields). Values are preserved as-found, not corrected by guessing.",
+      "The 'events' array is intentionally empty: the source site has no structured event feed. Events are created via the admin dashboard. Any demo events must be clearly labelled as samples."
+    ]
+  },
+  "category_definitions": [
+    {
+      "id": "youth_house",
+      "name_ar": "دار الشباب",
+      "name_fr": "Maison de Jeunes",
+      "default_activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/"
+    },
+    {
+      "id": "sports_complex",
+      "name_ar": "المركب الرياضي الجواري",
+      "name_fr": "Complexe Sportif de Proximité",
+      "default_activity_tags": [
+        "sport"
+      ],
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/"
+    },
+    {
+      "id": "youth_hostel",
+      "name_ar": "بيت الشباب",
+      "name_fr": "Auberge de Jeunes",
+      "default_activity_tags": [
+        "accommodation",
+        "culture",
+        "art",
+        "exchange",
+        "volunteering",
+        "support"
+      ],
+      "source_url": "https://odejbejaia-dz.com/المؤسسات/"
+    },
+    {
+      "id": "multiservice_hall",
+      "name_ar": "قاعة متعددة الخدمات",
+      "name_fr": "Salle Polyvalente",
+      "default_activity_tags": [
+        "music",
+        "theatre",
+        "art",
+        "languages",
+        "it",
+        "digital",
+        "environment",
+        "volunteering",
+        "culture",
+        "support"
+      ],
+      "source_url": "https://odejbejaia-dz.com/قاعات-متعددة-الخدمات/"
+    },
+    {
+      "id": "youth_camp",
+      "name_ar": "مخيم الشباب",
+      "name_fr": "Camp de Jeunes",
+      "default_activity_tags": [
+        "environment",
+        "art",
+        "theatre",
+        "music",
+        "culture",
+        "sport",
+        "volunteering"
+      ],
+      "source_url": "https://odejbejaia-dz.com/مخيمات-الشباب/"
+    },
+    {
+      "id": "science_center",
+      "name_ar": "المركز الترفيهي العلمي",
+      "name_fr": "Centre de Loisirs Scientifiques",
+      "default_activity_tags": [
+        "science",
+        "it",
+        "ai",
+        "robotics",
+        "tech",
+        "environment"
+      ],
+      "source_url": "https://odejbejaia-dz.com/المراكز-الترفيهية-العلمية/"
+    }
+  ],
+  "interest_tags": [
+    {
+      "id": "accommodation",
+      "ar": "إيواء",
+      "fr": "Hébergement",
+      "en": "Accommodation"
+    },
+    {
+      "id": "ai",
+      "ar": "ذكاء اصطناعي",
+      "fr": "Intelligence Artificielle",
+      "en": "AI"
+    },
+    {
+      "id": "art",
+      "ar": "فنون ورسم",
+      "fr": "Arts & Dessin",
+      "en": "Art & Drawing"
+    },
+    {
+      "id": "culture",
+      "ar": "ثقافة",
+      "fr": "Culture",
+      "en": "Culture"
+    },
+    {
+      "id": "debate",
+      "ar": "مناظرات",
+      "fr": "Débats",
+      "en": "Debate"
+    },
+    {
+      "id": "digital",
+      "ar": "إدماج رقمي",
+      "fr": "Inclusion Numérique",
+      "en": "Digital Inclusion"
+    },
+    {
+      "id": "environment",
+      "ar": "بيئة",
+      "fr": "Environnement",
+      "en": "Environment"
+    },
+    {
+      "id": "exchange",
+      "ar": "تبادل شبابي",
+      "fr": "Échange de Jeunes",
+      "en": "Youth Exchange"
+    },
+    {
+      "id": "it",
+      "ar": "إعلام آلي",
+      "fr": "Informatique",
+      "en": "IT"
+    },
+    {
+      "id": "languages",
+      "ar": "لغات",
+      "fr": "Langues",
+      "en": "Languages"
+    },
+    {
+      "id": "music",
+      "ar": "موسيقى",
+      "fr": "Musique",
+      "en": "Music"
+    },
+    {
+      "id": "robotics",
+      "ar": "روبوتيك",
+      "fr": "Robotique",
+      "en": "Robotics"
+    },
+    {
+      "id": "science",
+      "ar": "علوم",
+      "fr": "Sciences",
+      "en": "Science"
+    },
+    {
+      "id": "sport",
+      "ar": "رياضة",
+      "fr": "Sport",
+      "en": "Sport"
+    },
+    {
+      "id": "support",
+      "ar": "دعم نفسي واجتماعي",
+      "fr": "Soutien Psychosocial",
+      "en": "Psychosocial Support"
+    },
+    {
+      "id": "tech",
+      "ar": "تكنولوجيا",
+      "fr": "Technologie",
+      "en": "Technology"
+    },
+    {
+      "id": "theatre",
+      "ar": "مسرح",
+      "fr": "Théâtre",
+      "en": "Theatre"
+    },
+    {
+      "id": "volunteering",
+      "ar": "تطوع",
+      "fr": "Bénévolat",
+      "en": "Volunteering"
+    }
+  ],
+  "institutions": [
+    {
+      "id": "yh-001",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب أجيوان",
+      "commune_ar": "بوجليل",
+      "commune_fr": "Boudjellil",
+      "wilaya": "Bejaia",
+      "phone": null,
+      "email": "mjadjioune@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-002",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب أيت رزين",
+      "commune_ar": "أيت رزين",
+      "commune_fr": "Ait Rzine",
+      "wilaya": "Bejaia",
+      "phone": "034 33 49 36",
+      "email": "mjaitrzine@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-003",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب أقبو",
+      "commune_ar": "أقبو",
+      "commune_fr": "Akbou",
+      "wilaya": "Bejaia",
+      "phone": "034 85 45 33",
+      "email": "mjakbou@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-004",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب أكفادو",
+      "commune_ar": "أكفادو",
+      "commune_fr": "Akfadou",
+      "wilaya": "Bejaia",
+      "phone": "034 54 97 86",
+      "email": "mjakfadou@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-005",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب أميزور",
+      "commune_ar": "أميزور",
+      "commune_fr": "Amizour",
+      "wilaya": "Bejaia",
+      "phone": "030 06 40 16",
+      "email": "mjamizour@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": [
+        "area_code_030_as_listed"
+      ]
+    },
+    {
+      "id": "yh-006",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب أوقاس",
+      "commune_ar": "أوقاس",
+      "commune_fr": "Aokas",
+      "wilaya": "Bejaia",
+      "phone": "034 52 22 84",
+      "email": "mjaokas@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-007",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب برباشة",
+      "commune_ar": "برباشة",
+      "commune_fr": "Barbacha",
+      "wilaya": "Bejaia",
+      "phone": "034 09 17 84",
+      "email": "mjbarbacha@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-008",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب شلاطة",
+      "commune_ar": "شلاطة",
+      "commune_fr": "Chellata",
+      "wilaya": "Bejaia",
+      "phone": null,
+      "email": "ajtichy@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": [
+        "email_appears_shared_with_tichy_hostel_on_source"
+      ]
+    },
+    {
+      "id": "yh-009",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب ذراع القايد",
+      "commune_ar": "ذراع القايد",
+      "commune_fr": "Draa El Kaid",
+      "wilaya": "Bejaia",
+      "phone": "034 45 53 39",
+      "email": "mjdraaelkaid@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-010",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب الفلاي",
+      "commune_ar": "سيدي عيش",
+      "commune_fr": "El Flay (Sidi Aich)",
+      "wilaya": "Bejaia",
+      "phone": "034 26 70 83",
+      "email": "mjelflay@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-011",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب القصر",
+      "commune_ar": "القصر",
+      "commune_fr": "El Kseur",
+      "wilaya": "Bejaia",
+      "phone": "034 04 13 82",
+      "email": "mjelkseur@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-012",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب بجاية",
+      "commune_ar": "بجاية",
+      "commune_fr": "Bejaia",
+      "wilaya": "Bejaia",
+      "phone": "034 65 56 16",
+      "email": "mjfatimaramtani@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-013",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب فناية",
+      "commune_ar": "فناية",
+      "commune_fr": "Fenaia Ilmaten",
+      "wilaya": "Bejaia",
+      "phone": "034 80 68 82",
+      "email": "mjfenaia@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-014",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب فرعون",
+      "commune_ar": "فرعون",
+      "commune_fr": "Feraoun",
+      "wilaya": "Bejaia",
+      "phone": null,
+      "email": "mjferaoune@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-015",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب قندوزة",
+      "commune_ar": "قندوزة",
+      "commune_fr": "Guendouza",
+      "wilaya": "Bejaia",
+      "phone": "034 00 52 36",
+      "email": "mjguendouza@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-016",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب إيغيل علي",
+      "commune_ar": "إيغيل علي",
+      "commune_fr": "Ighil Ali",
+      "wilaya": "Bejaia",
+      "phone": "034 84 92 36",
+      "email": "mjighilali@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-017",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب إغزر أمقران",
+      "commune_ar": "إغزر أمقران",
+      "commune_fr": "Ighzer Amokrane",
+      "wilaya": "Bejaia",
+      "phone": "044 21 28 21",
+      "email": "mjighzeramokrane@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-018",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب كنديرة",
+      "commune_ar": "كنديرة",
+      "commune_fr": "Kendira",
+      "wilaya": "Bejaia",
+      "phone": null,
+      "email": null,
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": [
+        "no_phone_no_email_on_source"
+      ]
+    },
+    {
+      "id": "yh-019",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب خراطة",
+      "commune_ar": "خراطة",
+      "commune_fr": "Kherrata",
+      "wilaya": "Bejaia",
+      "phone": "034 15 51 18",
+      "email": "mjkherrata@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-020",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب لعلام",
+      "commune_ar": "لعلام",
+      "commune_fr": "Laalam",
+      "wilaya": "Bejaia",
+      "phone": null,
+      "email": "mjlaalam@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-021",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب ملبو",
+      "commune_ar": "ملبو",
+      "commune_fr": "Melbou",
+      "wilaya": "Bejaia",
+      "phone": "034 23 85 84",
+      "email": "mjmelbou@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-022",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب مسيسنة",
+      "commune_ar": "مسيسنة",
+      "commune_fr": "M'cisna",
+      "wilaya": "Bejaia",
+      "phone": "034 34 62 89",
+      "email": "mjmcisna@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-023",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب صدوق",
+      "commune_ar": "صدوق",
+      "commune_fr": "Seddouk",
+      "wilaya": "Bejaia",
+      "phone": "034 68 05 89",
+      "email": "mjseddouk@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-024",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب سمعون",
+      "commune_ar": "صدوق",
+      "commune_fr": "Semaoun",
+      "wilaya": "Bejaia",
+      "phone": null,
+      "email": "mjsemaoune@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": [
+        "commune_listed_as_seddouk_on_source"
+      ]
+    },
+    {
+      "id": "yh-025",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب صنادلة",
+      "commune_ar": "صنادلة",
+      "commune_fr": "Snadla",
+      "wilaya": "Bejaia",
+      "phone": "034 05 25 39",
+      "email": "mjsnadela@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-026",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب سيدي عيش",
+      "commune_ar": "سيدي عيش",
+      "commune_fr": "Sidi Aich",
+      "wilaya": "Bejaia",
+      "phone": "034 23 20 86",
+      "email": "mjsidiaich@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-027",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب سيدي عياد",
+      "commune_ar": "سيدي عياد",
+      "commune_fr": "Sidi Ayad",
+      "wilaya": "Bejaia",
+      "phone": "034 23 20 86",
+      "email": "mjsidiayad@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": [
+        "same_phone_as_sidi_aich_on_source"
+      ]
+    },
+    {
+      "id": "yh-028",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب سوق الإثنين",
+      "commune_ar": "سوق الإثنين",
+      "commune_fr": "Souk El Tenine",
+      "wilaya": "Bejaia",
+      "phone": "034 04 03 26",
+      "email": "mjsoukeltenine@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-029",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب تقريت",
+      "commune_ar": "تقريت",
+      "commune_fr": "Takerietz",
+      "wilaya": "Bejaia",
+      "phone": "034 69 71 84",
+      "email": "mjtakerietz@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-030",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب تامريجت",
+      "commune_ar": "تامريجت",
+      "commune_fr": "Tamridjet",
+      "wilaya": "Bejaia",
+      "phone": "034 92 13 15",
+      "email": "mjtameridjet@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-031",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب توريرث إيغيل",
+      "commune_ar": "توريرث إيغيل",
+      "commune_fr": "Taourirt Ighil",
+      "wilaya": "Bejaia",
+      "phone": null,
+      "email": "mjtaourirtighil@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-032",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب تازمالت",
+      "commune_ar": "تازمالت",
+      "commune_fr": "Tazmalt",
+      "wilaya": "Bejaia",
+      "phone": "034 13 50 08",
+      "email": "mjtazmalt@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-033",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب تيبان",
+      "commune_ar": "تيبان",
+      "commune_fr": "Tibane",
+      "wilaya": "Bejaia",
+      "phone": "034 54 11 14",
+      "email": "mjtibane@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-034",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب تيمزيث",
+      "commune_ar": "تيمزيث",
+      "commune_fr": "Timezrit",
+      "wilaya": "Bejaia",
+      "phone": "034 47 60 14",
+      "email": "mjtimezrit@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "yh-035",
+      "category": "youth_house",
+      "category_name_ar": "دار الشباب",
+      "category_name_fr": "Maison de Jeunes",
+      "name_ar": "دار الشباب تيزي الواد",
+      "commune_ar": "تيزي الواد",
+      "commune_fr": "Tizi Oued",
+      "wilaya": "Bejaia",
+      "phone": "034 79 67 15",
+      "email": "mjtizieloued@odejbejaia-dz.com",
+      "activity_tags": [
+        "theatre",
+        "music",
+        "art",
+        "sport",
+        "debate",
+        "culture",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/دور-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-001",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري أدكار",
+      "commune_ar": "أيت أدكار",
+      "commune_fr": "Adekar",
+      "wilaya": "Bejaia",
+      "phone": "034 98 31 86",
+      "email": "cspadekar@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-002",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري أميزور",
+      "commune_ar": "أميزور",
+      "commune_fr": "Amizour",
+      "wilaya": "Bejaia",
+      "phone": "034 91 75 30",
+      "email": "cspamizour@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-003",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري أوقاس",
+      "commune_ar": "أوقاس",
+      "commune_fr": "Aokas",
+      "wilaya": "Bejaia",
+      "phone": "034 35 00 15",
+      "email": "cspaokas@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-004",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري برباشة",
+      "commune_ar": "برباشة",
+      "commune_fr": "Barbacha",
+      "wilaya": "Bejaia",
+      "phone": "034 37 17 84",
+      "email": "cspbarbacha@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-005",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري بني معوش",
+      "commune_ar": "أوقاس",
+      "commune_fr": "Beni Maouche",
+      "wilaya": "Bejaia",
+      "phone": "034 16 03 89",
+      "email": "cspbenimaouche@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": [
+        "commune_listed_as_aokas_on_source"
+      ]
+    },
+    {
+      "id": "sc-006",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري شميني",
+      "commune_ar": "شميني",
+      "commune_fr": "Chemini",
+      "wilaya": "Bejaia",
+      "phone": null,
+      "email": "cspchemini@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-007",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري درقينة",
+      "commune_ar": "درقينة",
+      "commune_fr": "Darguina",
+      "wilaya": "Bejaia",
+      "phone": "034 20 80 39",
+      "email": "cspdarguina@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-008",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري القصر",
+      "commune_ar": "القصر",
+      "commune_fr": "El Kseur",
+      "wilaya": "Bejaia",
+      "phone": "034 62 31 13",
+      "email": "cspelkseur@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-009",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري إغيل عزوق",
+      "commune_ar": "بجاية",
+      "commune_fr": "Bejaia",
+      "wilaya": "Bejaia",
+      "phone": "034 54 73 16",
+      "email": "mjelflay@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": [
+        "email_appears_shared_mjelflay_on_source"
+      ]
+    },
+    {
+      "id": "sc-010",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري إغزر أمقران",
+      "commune_ar": "إغزر أمقران",
+      "commune_fr": "Ighzer Amokrane",
+      "wilaya": "Bejaia",
+      "phone": "044 97 26 21",
+      "email": "cspighzeramokrane@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-011",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري صدوق",
+      "commune_ar": "صدوق",
+      "commune_fr": "Seddouk",
+      "wilaya": "Bejaia",
+      "phone": "034 20 02 19",
+      "email": "cspseddouk@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-012",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري سيدي عيش",
+      "commune_ar": "سيدي عيش",
+      "commune_fr": "Sidi Aich",
+      "wilaya": "Bejaia",
+      "phone": "034 30 52 16",
+      "email": "cspsidiaich@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-013",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري سوق الإثنين",
+      "commune_ar": "سوق الإثنين",
+      "commune_fr": "Souk El Tenine",
+      "wilaya": "Bejaia",
+      "phone": "034 05 68 84",
+      "email": "cspsoukeltenine@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-014",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري تامقرة",
+      "commune_ar": "تامقرة",
+      "commune_fr": "Tamokra",
+      "wilaya": "Bejaia",
+      "phone": "034 10 19 89",
+      "email": "csptamokra@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-015",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري تازمالت",
+      "commune_ar": "تازمالت",
+      "commune_fr": "Tazmalt",
+      "wilaya": "Bejaia",
+      "phone": "034 40 23 31",
+      "email": "csptazmalt@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-016",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري تيشي",
+      "commune_ar": "تيشي",
+      "commune_fr": "Tichy",
+      "wilaya": "Bejaia",
+      "phone": "034 90 52 81",
+      "email": "csptichy@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-017",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري تيفرة",
+      "commune_ar": "تيفرة",
+      "commune_fr": "Tifra",
+      "wilaya": "Bejaia",
+      "phone": "034 43 21 14",
+      "email": "csptifra@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-018",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري تيمزريت",
+      "commune_ar": "تيمزريت",
+      "commune_fr": "Timezrit",
+      "wilaya": "Bejaia",
+      "phone": "034 42 32 26",
+      "email": "csptimezrit@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "sc-019",
+      "category": "sports_complex",
+      "category_name_ar": "المركب الرياضي الجواري",
+      "category_name_fr": "Complexe Sportif de Proximité",
+      "name_ar": "المركب الرياضي الجواري تيزي نبربر",
+      "commune_ar": "تيزي نبربر",
+      "commune_fr": "Tizi N'Berber",
+      "wilaya": "Bejaia",
+      "phone": "034 82 44 19",
+      "email": "csptizinberber@odejbejaia-dz.com",
+      "activity_tags": [
+        "sport"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مركبات-الرياضية-الجوارية/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "hostel-001",
+      "category": "youth_hostel",
+      "category_name_ar": "بيت الشباب",
+      "category_name_fr": "Auberge de Jeunes",
+      "name_ar": "بيت الشباب أدكار",
+      "commune_ar": "أدكار",
+      "commune_fr": "Adekar",
+      "wilaya": "Bejaia",
+      "phone": "034 95 31 86",
+      "email": "ajadekar@odejbejaia-dz.com",
+      "activity_tags": [
+        "accommodation",
+        "culture",
+        "art",
+        "exchange",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/المؤسسات/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "hostel-002",
+      "category": "youth_hostel",
+      "category_name_ar": "بيت الشباب",
+      "category_name_fr": "Auberge de Jeunes",
+      "name_ar": "بيت الشباب أقبو",
+      "commune_ar": "أقبو",
+      "commune_fr": "Akbou",
+      "wilaya": "Bejaia",
+      "phone": null,
+      "email": "ajakbou@odejbejaia-dz.com",
+      "activity_tags": [
+        "accommodation",
+        "culture",
+        "art",
+        "exchange",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/المؤسسات/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "hostel-003",
+      "category": "youth_hostel",
+      "category_name_ar": "بيت الشباب",
+      "category_name_fr": "Auberge de Jeunes",
+      "name_ar": "بيت الشباب أوقاس",
+      "commune_ar": "أوقاس",
+      "commune_fr": "Aokas",
+      "wilaya": "Bejaia",
+      "phone": null,
+      "email": "ajchateau@odejbejaia-dz.com",
+      "activity_tags": [
+        "accommodation",
+        "culture",
+        "art",
+        "exchange",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/المؤسسات/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "hostel-004",
+      "category": "youth_hostel",
+      "category_name_ar": "بيت الشباب",
+      "category_name_fr": "Auberge de Jeunes",
+      "name_ar": "بيت الشباب درقينة",
+      "commune_ar": "درقينة",
+      "commune_fr": "Darguina",
+      "wilaya": "Bejaia",
+      "phone": "034 37 82 39",
+      "email": "ajdarguina@odejbejaia-dz.com",
+      "activity_tags": [
+        "accommodation",
+        "culture",
+        "art",
+        "exchange",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/المؤسسات/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "hostel-005",
+      "category": "youth_hostel",
+      "category_name_ar": "بيت الشباب",
+      "category_name_fr": "Auberge de Jeunes",
+      "name_ar": "بيت الشباب خراطة",
+      "commune_ar": "خراطة",
+      "commune_fr": "Kherrata",
+      "wilaya": "Bejaia",
+      "phone": "034 16 51 18",
+      "email": "ajkherrata@odejbejaia-dz.com",
+      "activity_tags": [
+        "accommodation",
+        "culture",
+        "art",
+        "exchange",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/المؤسسات/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "hostel-006",
+      "category": "youth_hostel",
+      "category_name_ar": "بيت الشباب",
+      "category_name_fr": "Auberge de Jeunes",
+      "name_ar": "بيت الشباب سوق الإثنين",
+      "commune_ar": "سوق الإثنين",
+      "commune_fr": "Souk El Tenine",
+      "wilaya": "Bejaia",
+      "phone": "034 23 36 09",
+      "email": "ajsetenine@odejbejaia-dz.com",
+      "activity_tags": [
+        "accommodation",
+        "culture",
+        "art",
+        "exchange",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/المؤسسات/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "hostel-007",
+      "category": "youth_hostel",
+      "category_name_ar": "بيت الشباب",
+      "category_name_fr": "Auberge de Jeunes",
+      "name_ar": "بيت الشباب سوماري",
+      "commune_ar": "بجاية",
+      "commune_fr": "Bejaia (Soummari)",
+      "wilaya": "Bejaia",
+      "phone": "034 34 57 16",
+      "email": "ajsoummari@odejbejaia-dz.com",
+      "activity_tags": [
+        "accommodation",
+        "culture",
+        "art",
+        "exchange",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/المؤسسات/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "hostel-008",
+      "category": "youth_hostel",
+      "category_name_ar": "بيت الشباب",
+      "category_name_fr": "Auberge de Jeunes",
+      "name_ar": "بيت الشباب تيشي",
+      "commune_ar": "تيشي",
+      "commune_fr": "Tichy",
+      "wilaya": "Bejaia",
+      "phone": "034 86 66 81",
+      "email": "ajtichy@odejbejaia-dz.com",
+      "activity_tags": [
+        "accommodation",
+        "culture",
+        "art",
+        "exchange",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/المؤسسات/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "hostel-009",
+      "category": "youth_hostel",
+      "category_name_ar": "بيت الشباب",
+      "category_name_fr": "Auberge de Jeunes",
+      "name_ar": "بيت الشباب أوزلاقن",
+      "commune_ar": "أوزلاقن",
+      "commune_fr": "Ouzellaguen",
+      "wilaya": "Bejaia",
+      "phone": "044 12 29 21",
+      "email": "ajouzellaguen@odejbejaia-dz.com",
+      "activity_tags": [
+        "accommodation",
+        "culture",
+        "art",
+        "exchange",
+        "volunteering",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/المؤسسات/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "hall-001",
+      "category": "multiservice_hall",
+      "category_name_ar": "قاعة متعددة الخدمات",
+      "category_name_fr": "Salle Polyvalente",
+      "name_ar": "قاعة متعددة الخدمات جبلة",
+      "commune_ar": "جبلة",
+      "commune_fr": "Djebla",
+      "wilaya": "Bejaia",
+      "phone": "034 60 73 86",
+      "email": "spdjebla@odejbejaia-dz.com",
+      "activity_tags": [
+        "music",
+        "theatre",
+        "art",
+        "languages",
+        "it",
+        "digital",
+        "environment",
+        "volunteering",
+        "culture",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/قاعات-متعددة-الخدمات/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "hall-002",
+      "category": "multiservice_hall",
+      "category_name_ar": "قاعة متعددة الخدمات",
+      "category_name_fr": "Salle Polyvalente",
+      "name_ar": "قاعة متعددة الخدمات مسيسنة",
+      "commune_ar": "مسيسنة",
+      "commune_fr": "M'cisna",
+      "wilaya": "Bejaia",
+      "phone": null,
+      "email": "spmcisna@odejbejaia-dz.com",
+      "activity_tags": [
+        "music",
+        "theatre",
+        "art",
+        "languages",
+        "it",
+        "digital",
+        "environment",
+        "volunteering",
+        "culture",
+        "support"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/قاعات-متعددة-الخدمات/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "camp-001",
+      "category": "youth_camp",
+      "category_name_ar": "مخيم الشباب",
+      "category_name_fr": "Camp de Jeunes",
+      "name_ar": "مخيم الشباب بني كسيلة",
+      "commune_ar": "أدكار",
+      "commune_fr": "Beni Ksila (Adekar)",
+      "wilaya": "Bejaia",
+      "phone": "034 51 31 28",
+      "email": "ajadekar@odejbejaia-dz.com",
+      "activity_tags": [
+        "environment",
+        "art",
+        "theatre",
+        "music",
+        "culture",
+        "sport",
+        "volunteering"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مخيمات-الشباب/",
+      "data_quality_flags": []
+    },
+    {
+      "id": "camp-002",
+      "category": "youth_camp",
+      "category_name_ar": "مخيم الشباب",
+      "category_name_fr": "Camp de Jeunes",
+      "name_ar": "مخيم الشباب ملبو",
+      "commune_ar": "ملبو",
+      "commune_fr": "Melbou",
+      "wilaya": "Bejaia",
+      "phone": "034 25 61 15",
+      "email": "ajakbou@odejbejaia-dz.com",
+      "activity_tags": [
+        "environment",
+        "art",
+        "theatre",
+        "music",
+        "culture",
+        "sport",
+        "volunteering"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/مخيمات-الشباب/",
+      "data_quality_flags": [
+        "email_appears_shared_ajakbou_on_source"
+      ]
+    },
+    {
+      "id": "sci-001",
+      "category": "science_center",
+      "category_name_ar": "المركز الترفيهي العلمي",
+      "category_name_fr": "Centre de Loisirs Scientifiques",
+      "name_ar": "المركز الترفيهي العلمي واد غير",
+      "commune_ar": "واد غير",
+      "commune_fr": "Oued Ghir",
+      "wilaya": "Bejaia",
+      "phone": "034 75 91 17",
+      "email": "clsouedghir@odejbejaia-dz.com",
+      "activity_tags": [
+        "science",
+        "it",
+        "ai",
+        "robotics",
+        "tech",
+        "environment"
+      ],
+      "coordinates": null,
+      "source_url": "https://odejbejaia-dz.com/المراكز-الترفيهية-العلمية/",
+      "data_quality_flags": []
+    }
+  ],
+  "events": []
+}

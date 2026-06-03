@@ -1,0 +1,15 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+@layer base {
+  :root { color-scheme: dark; }
+  body { @apply bg-background text-gray-100 font-sans antialiased selection:bg-primary/30 selection:text-white; }
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { @apply bg-background; }
+::-webkit-scrollbar-thumb { @apply bg-surfaceHover rounded-full; }
+
+/* Indeterminate splash progress sliver */
+@keyframes loadingSlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+.animate-loading-slide { animation: loadingSlide 0.9s ease-in-out infinite; }
