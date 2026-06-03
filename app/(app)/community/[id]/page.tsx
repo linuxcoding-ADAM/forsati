@@ -4,17 +4,19 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import { useLanguage } from '@/lib/contexts/LanguageContext';
+import { isAdminUser } from '@/lib/admin';
 import {
   getPost, getUserReactions, getUserSavedPosts, setReaction, toggleSavePost, localizePost,
-  type Post, type Reaction,
+  getComments, addComment, deleteComment, commentsAllowed,
+  type Post, type Reaction, type PostComment,
 } from '@/lib/posts';
 import { getEvent, type Event } from '@/lib/events';
-import { ArrowLeft, ThumbsUp, ThumbsDown, Bookmark, CalendarDays, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ThumbsUp, ThumbsDown, Bookmark, CalendarDays, ArrowRight, MessageCircle, Send, Trash2, Lock } from 'lucide-react';
 
 export default function PostDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, preferences } = useAuth();
   const { t, language } = useLanguage();
 
   const [post, setPost] = useState<Post | null>(null);
@@ -24,6 +26,11 @@ export default function PostDetailPage() {
   const [relatedEvent, setRelatedEvent] = useState<Event | null>(null);
   const [busy, setBusy] = useState(false);
 
+  // Comments
+  const [comments, setComments] = useState<PostComment[]>([]);
+  const [commentText, setCommentText] = useState('');
+  const [posting, setPosting] = useState(false);
+
   useEffect(() => {
     const id = params.id as string;
     if (!id) return;
@@ -32,6 +39,8 @@ export default function PostDetailPage() {
       setPost(p);
       setLoading(false);
       if (p?.relatedEventId) getEvent(p.relatedEventId).then(setRelatedEvent);
+      // Load comments only when the post allows them (eco: no wasted reads).
+      if (p && commentsAllowed(p)) getComments(id).then(setComments);
       if (user) {
         const [r, s] = await Promise.all([getUserReactions(user.uid), getUserSavedPosts(user.uid)]);
         setReactionState(r[id] ?? null);
@@ -80,6 +89,33 @@ export default function PostDetailPage() {
       console.error('Save failed:', err);
       setSaved(wasSaved); // roll back
     } finally { setBusy(false); }
+  };
+
+  const myName = [preferences?.firstName, preferences?.lastName].filter(Boolean).join(' ')
+    || user?.email?.split('@')[0] || 'User';
+  const canModerate = isAdminUser(user?.email, preferences?.role);
+
+  const handlePostComment = async () => {
+    if (!user || !commentText.trim()) return;
+    setPosting(true);
+    const optimistic: PostComment = {
+      id: `tmp-${comments.length}`, postId: post.id, userId: user.uid,
+      userName: myName, text: commentText.trim(), createdAt: new Date().toISOString(),
+    };
+    setComments(prev => [...prev, optimistic]);
+    setCommentText('');
+    try {
+      const saved = await addComment(post.id, user.uid, myName, optimistic.text);
+      // Swap the temp comment for the stored one (or drop it on failure).
+      setComments(prev => prev.map(c => c.id === optimistic.id ? (saved ?? c) : c).filter(c => saved || c.id !== optimistic.id));
+    } finally { setPosting(false); }
+  };
+
+  const handleDeleteComment = async (id: string) => {
+    const prev = comments;
+    setComments(cs => cs.filter(c => c.id !== id));
+    const ok = await deleteComment(id);
+    if (!ok) setComments(prev); // roll back
   };
 
   return (
@@ -148,6 +184,76 @@ export default function PostDetailPage() {
               </Link>
             </div>
           )}
+
+          {/* ── Comments ─────────────────────────────────────────────── */}
+          <div className="border-t border-border/50 pt-6">
+            {commentsAllowed(post) ? (
+              <>
+                <h3 className="flex items-center gap-2 text-sm font-bold text-textMuted uppercase tracking-wider mb-4">
+                  <MessageCircle size={15} /> {t('community', 'comments')} ({comments.length})
+                </h3>
+
+                {/* Composer */}
+                {user && (
+                  <div className="flex items-start gap-2 mb-5">
+                    <input
+                      value={commentText}
+                      onChange={e => setCommentText(e.target.value)}
+                      onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handlePostComment(); } }}
+                      maxLength={500}
+                      placeholder={t('community', 'commentPlaceholder')}
+                      className="flex-1 bg-background border border-border rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-primary transition-colors"
+                    />
+                    <button
+                      onClick={handlePostComment}
+                      disabled={posting || !commentText.trim()}
+                      className="shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-primary text-black hover:brightness-110 active:scale-95 transition-all disabled:opacity-40"
+                      aria-label={t('community', 'postComment')}
+                    >
+                      <Send size={17} />
+                    </button>
+                  </div>
+                )}
+
+                {/* List */}
+                {comments.length === 0 ? (
+                  <p className="text-sm text-textMuted text-center py-6">{t('community', 'noComments')}</p>
+                ) : (
+                  <div className="flex flex-col gap-3">
+                    {comments.map(c => (
+                      <div key={c.id} className="flex gap-3 group">
+                        <div className="w-8 h-8 rounded-full bg-primary/15 text-primary flex items-center justify-center text-xs font-bold shrink-0">
+                          {c.userName.charAt(0).toUpperCase()}
+                        </div>
+                        <div className="flex-1 min-w-0 bg-surface border border-border/60 rounded-2xl px-4 py-2.5">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-semibold text-white truncate">{c.userName}</span>
+                            <span className="text-[10px] text-textMuted shrink-0">
+                              {(() => { try { return new Date(c.createdAt).toLocaleDateString(); } catch { return ''; } })()}
+                            </span>
+                            {(canModerate || c.userId === user?.uid) && !c.id.startsWith('tmp-') && (
+                              <button
+                                onClick={() => handleDeleteComment(c.id)}
+                                className="ms-auto text-textMuted hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                                aria-label="Delete"
+                              >
+                                <Trash2 size={13} />
+                              </button>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-200 break-words mt-0.5">{c.text}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <p className="flex items-center justify-center gap-2 text-sm text-textMuted py-4">
+                <Lock size={14} /> {t('community', 'commentsDisabled')}
+              </p>
+            )}
+          </div>
         </main>
       </div>
     </div>

@@ -1,7 +1,27 @@
 @tailwind base; @tailwind components; @tailwind utilities;
+
+/* Brand wordmark font — "Sacrifice" by Heinzel Studio.
+   Drop the font file in /public/fonts/ (Sacrifice.woff2 and/or Sacrifice.ttf).
+   font-display:swap → text shows immediately in the fallback, then swaps in. */
+@font-face {
+  font-family: 'Sacrifice';
+  src: url('/fonts/Sacrifice.woff2') format('woff2'),
+       url('/fonts/Sacrifice.ttf')   format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root { color-scheme: dark; }
   body { @apply bg-background text-gray-100 font-sans antialiased selection:bg-primary/30 selection:text-white; }
+}
+
+/* Reusable brand wordmark — use on every "Forsati" text. */
+.font-forsati {
+  font-family: 'Sacrifice', 'Inter', system-ui, sans-serif;
+  font-style: italic;
+  letter-spacing: -0.03em;
 }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { @apply bg-background; }

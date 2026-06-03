@@ -81,13 +81,13 @@ function InputField({ label, value, onChange, type = 'text', disabled = false, p
   );
 }
 
-function SummaryRow({ label, value }: { label: string; value: string }) {
+function SummaryRow({ label, value, fallback = 'Not set' }: { label: string; value: string; fallback?: string }) {
   const filled = value.trim().length > 0;
   return (
     <div className="flex items-center justify-between gap-3 border-b border-border/40 pb-2">
       <span className="text-xs text-textMuted shrink-0">{label}</span>
       <span className={`text-sm font-medium text-end truncate ${filled ? 'text-white' : 'text-textMuted/60 italic'}`}>
-        {filled ? value : 'Not set'}
+        {filled ? value : fallback}
       </span>
     </div>
   );
@@ -144,7 +144,13 @@ export default function Settings() {
   const handlePhone = (v: string) => { if (canTypePhone(v)) setPhone(v); };
   const handleIdNumber = (v: string) => { if (canTypeIdNumber(v)) setIdNumber(v); };
 
-  const idTypeLabel = ID_TYPES.find(t => t.value === idType)?.label ?? '';
+  // Localized label for an identity-document type.
+  const localizedIdType = (v: string) =>
+    v === 'national_id' ? t('profile', 'nationalId')
+    : v === 'passport' ? t('profile', 'passport')
+    : v === 'driver_license' ? t('profile', 'driverLicense')
+    : '';
+  const idTypeLabel = localizedIdType(idType);
   const fullName = [firstName, lastName].filter(Boolean).join(' ');
 
   const handleSave = async () => {
@@ -179,24 +185,24 @@ export default function Settings() {
       </div>
 
       {/* ── My Information ─────────────────────────────────────────────── */}
-      <Section icon={User} title="My Information" subtitle="Used to auto-fill event registrations. Collected once.">
+      <Section icon={User} title={t('profile', 'myInfo')} subtitle={t('profile', 'myInfoSub')}>
         {!editingInfo ? (
           /* ── Collapsed summary + Edit button ───────────────────────── */
           <div className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
-              <SummaryRow label="Full Name" value={fullName} />
-              <SummaryRow label="Phone Number" value={phone} />
-              <SummaryRow label="Age" value={age} />
-              <SummaryRow label="Email" value={user?.email || ''} />
-              <SummaryRow label="Document" value={idType ? `${idTypeLabel} · ${idNumber || '—'}` : ''} />
-              <SummaryRow label="City" value={city} />
+              <SummaryRow label={t('profile', 'fullName')} value={fullName} fallback={t('profile', 'notSet')} />
+              <SummaryRow label={t('profile', 'phone')} value={phone} fallback={t('profile', 'notSet')} />
+              <SummaryRow label={t('profile', 'age')} value={age} fallback={t('profile', 'notSet')} />
+              <SummaryRow label={t('profile', 'email')} value={user?.email || ''} fallback={t('profile', 'notSet')} />
+              <SummaryRow label={t('profile', 'document')} value={idType ? `${idTypeLabel} · ${idNumber || '—'}` : ''} fallback={t('profile', 'notSet')} />
+              <SummaryRow label={t('profile', 'city')} value={city} fallback={t('profile', 'notSet')} />
             </div>
             <button
               onClick={() => setEditingInfo(true)}
               className="w-full flex items-center justify-center gap-2 border border-border hover:border-primary text-white font-semibold py-2.5 rounded-lg transition-colors"
             >
               <Pencil size={15} className="text-primary" />
-              Edit My Information
+              {t('profile', 'editInfo')}
             </button>
           </div>
         ) : (
@@ -204,18 +210,18 @@ export default function Settings() {
           <div className="space-y-4">
             {/* Personal */}
             <div>
-              <p className="text-xs text-textMuted font-semibold uppercase tracking-wider mb-2">Personal</p>
+              <p className="text-xs text-textMuted font-semibold uppercase tracking-wider mb-2">{t('profile', 'personal')}</p>
               <div className="grid grid-cols-2 gap-3">
-                <InputField label="First Name" value={firstName} onChange={setFirstName} placeholder="Adam" />
-                <InputField label="Last Name" value={lastName} onChange={setLastName} placeholder="Bensaid" />
+                <InputField label={t('profile', 'firstName')} value={firstName} onChange={setFirstName} placeholder="Adam" />
+                <InputField label={t('profile', 'lastName')} value={lastName} onChange={setLastName} placeholder="Bensaid" />
               </div>
               <div className="grid grid-cols-2 gap-3 mt-3">
-                <InputField label="Phone Number" value={phone} onChange={handlePhone} type="tel" inputMode="numeric" maxLength={PHONE_LENGTH} placeholder="0555 xx xx xx" />
-                <InputField label="Age" value={age} onChange={setAge} type="number" placeholder="22" />
+                <InputField label={t('profile', 'phone')} value={phone} onChange={handlePhone} type="tel" inputMode="numeric" maxLength={PHONE_LENGTH} placeholder="0555 xx xx xx" />
+                <InputField label={t('profile', 'age')} value={age} onChange={setAge} type="number" placeholder="22" />
               </div>
               <div className="mt-3">
                 <InputField
-                  label="Email"
+                  label={t('profile', 'email')}
                   value={user?.email || ''}
                   disabled
                   placeholder=""
@@ -226,27 +232,27 @@ export default function Settings() {
 
             {/* Identity */}
             <div>
-              <p className="text-xs text-textMuted font-semibold uppercase tracking-wider mb-2">Identity Document</p>
+              <p className="text-xs text-textMuted font-semibold uppercase tracking-wider mb-2">{t('profile', 'identityDoc')}</p>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs text-textMuted block mb-1">Document Type</label>
+                  <label className="text-xs text-textMuted block mb-1">{t('profile', 'docType')}</label>
                   <select
                     value={idType}
                     onChange={e => setIdType(e.target.value)}
                     className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-primary transition-colors"
                   >
-                    <option value="">Select type</option>
-                    {ID_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
+                    <option value="">{t('profile', 'selectType')}</option>
+                    {ID_TYPES.map(opt => <option key={opt.value} value={opt.value}>{localizedIdType(opt.value)}</option>)}
                   </select>
                 </div>
-                <InputField label="Document Number" value={idNumber} onChange={handleIdNumber} inputMode="numeric" maxLength={ID_MAX_LENGTH} placeholder="XXXXXXXXXXXXXXXX" />
+                <InputField label={t('profile', 'docNumber')} value={idNumber} onChange={handleIdNumber} inputMode="numeric" maxLength={ID_MAX_LENGTH} placeholder="XXXXXXXXXXXXXXXX" />
               </div>
             </div>
 
             {/* Residence */}
             <div>
-              <p className="text-xs text-textMuted font-semibold uppercase tracking-wider mb-2">Residence</p>
-              <InputField label="City (optional)" value={city} onChange={setCity} placeholder={wilayaName || 'Your city'} />
+              <p className="text-xs text-textMuted font-semibold uppercase tracking-wider mb-2">{t('profile', 'residence')}</p>
+              <InputField label={`${t('profile', 'city')} ${t('profile', 'optional')}`} value={city} onChange={setCity} placeholder={wilayaName || t('profile', 'city')} />
             </div>
 
             <button
@@ -254,9 +260,9 @@ export default function Settings() {
               className="w-full flex items-center justify-center gap-2 bg-primary/10 border border-primary text-primary font-semibold py-2.5 rounded-lg transition-colors hover:bg-primary/20"
             >
               <ChevronDown size={16} />
-              Done — collapse
+              {t('profile', 'doneCollapse')}
             </button>
-            <p className="text-xs text-textMuted text-center">Don&apos;t forget to press <span className="text-white font-medium">Save Changes</span> below to keep your edits.</p>
+            <p className="text-xs text-textMuted text-center">{t('profile', 'saveReminder')}</p>
           </div>
         )}
       </Section>

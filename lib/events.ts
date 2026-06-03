@@ -1,7 +1,8 @@
 import { db } from './firebase';
 import {
   collection, doc, getDoc, getDocs, query, orderBy, setDoc,
-  where, limit, updateDoc, increment,
+  where, limit, updateDoc, increment, startAfter,
+  type QueryConstraint, type QueryDocumentSnapshot, type DocumentData,
 } from 'firebase/firestore';
 
 // Points granted to a user once their attendance is confirmed by a scan.
@@ -173,6 +174,111 @@ export async function getEvent(id: string): Promise<Event | null> {
     console.error('Error fetching event, checking demo events:', error);
   }
   return buildDemoEvents().find(e => e.id === id) ?? null;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Scalable queries (EcoHack) — fetch ONLY what's needed with Firestore `where`
+// + `limit`, instead of downloading the whole `events` collection and filtering
+// in the browser. With 400+ events that's the difference between reading 20
+// documents and reading 400 — far less bandwidth, cost, and carbon.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const DEFAULT_PAGE = 20;
+
+const isPublished = (e: Event & { published?: boolean }) => e.published !== false;
+
+/**
+ * Events hosted by ONE institution — server-side filtered with
+ * `where('institutionId','==', …)`, so we never pull other institutions' events.
+ */
+export async function getEventsByInstitution(institutionId: string, max = DEFAULT_PAGE): Promise<Event[]> {
+  let remote: Event[] = [];
+  try {
+    const snap = await getDocs(query(
+      collection(db, 'events'),
+      where('institutionId', '==', institutionId),
+      limit(max),
+    ));
+    remote = snap.docs.map(d => ({ id: d.id, ...d.data() } as Event)).filter(isPublished);
+  } catch (error) {
+    console.error('getEventsByInstitution failed, using demo set:', error);
+  }
+  const demos = buildDemoEvents().filter(e => e.institutionId === institutionId && !remote.some(r => r.id === e.id));
+  return [...remote, ...demos];
+}
+
+/**
+ * Filtered event search. Uses a SINGLE equality `where` on the server (no
+ * composite index needed) + `limit`, then applies any remaining filters to the
+ * small result set. This is the function to back a future "search events" UI.
+ */
+export async function queryEvents(opts: {
+  wilaya?: string;
+  category?: string;
+  status?: 'open' | 'closed';
+  max?: number;
+} = {}): Promise<Event[]> {
+  const max = opts.max ?? DEFAULT_PAGE;
+
+  // Pick the most selective field for the server-side filter.
+  const primary: QueryConstraint | null =
+    opts.category ? where('category', '==', opts.category)
+    : opts.wilaya ? where('wilaya', '==', opts.wilaya)
+    : opts.status ? where('status', '==', opts.status)
+    : null;
+
+  let remote: Event[] = [];
+  try {
+    const constraints: QueryConstraint[] = primary
+      ? [primary, limit(max)]
+      : [orderBy('date', 'asc'), limit(max)];
+    const snap = await getDocs(query(collection(db, 'events'), ...constraints));
+    remote = snap.docs.map(d => ({ id: d.id, ...d.data() } as Event));
+  } catch (error) {
+    console.error('queryEvents failed, using demo set:', error);
+    remote = buildDemoEvents();
+  }
+
+  // Merge always-present demo events, then apply the leftover filters in memory
+  // (cheap — at most `max` docs) and drop drafts.
+  const merged = [...remote, ...buildDemoEvents().filter(e => !remote.some(r => r.id === e.id))];
+  return merged
+    .filter(isPublished)
+    .filter(e => !opts.wilaya   || e.wilaya?.toLowerCase() === opts.wilaya.toLowerCase())
+    .filter(e => !opts.category || e.category === opts.category)
+    .filter(e => !opts.status   || e.status === opts.status)
+    .slice(0, max);
+}
+
+export interface EventPage {
+  events: Event[];
+  cursor: QueryDocumentSnapshot<DocumentData> | null;
+  done: boolean;
+}
+
+/**
+ * One page of events for infinite/"load more" feeds. `orderBy('date') + limit`
+ * fetches a fixed window; pass the previous page's `cursor` to get the next.
+ */
+export async function getEventsPage(
+  pageSize = DEFAULT_PAGE,
+  cursor?: QueryDocumentSnapshot<DocumentData> | null,
+): Promise<EventPage> {
+  try {
+    const constraints: QueryConstraint[] = [orderBy('date', 'asc')];
+    if (cursor) constraints.push(startAfter(cursor));
+    constraints.push(limit(pageSize));
+    const snap = await getDocs(query(collection(db, 'events'), ...constraints));
+    const events = snap.docs.map(d => ({ id: d.id, ...d.data() } as Event)).filter(isPublished);
+    return {
+      events,
+      cursor: snap.docs.length ? snap.docs[snap.docs.length - 1] : null,
+      done: snap.docs.length < pageSize,
+    };
+  } catch (error) {
+    console.error('getEventsPage failed, using demo set:', error);
+    return { events: buildDemoEvents(), cursor: null, done: true };
+  }
 }
 
 // Deterministic registration document id — one registration per user/event.

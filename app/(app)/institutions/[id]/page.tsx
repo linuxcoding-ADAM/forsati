@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ODEJ_DATA } from '@/lib/data';
-import { getEvents, type Event } from '@/lib/events';
+import { getEventsByInstitution, type Event } from '@/lib/events';
 import { useLanguage } from '@/lib/contexts/LanguageContext';
 import { localize, type Lang, type RawInst } from '@/lib/localize';
 import { MapPin, ArrowLeft, Phone, Mail, Navigation, Leaf } from 'lucide-react';
@@ -23,9 +23,9 @@ export default function InstitutionDetailsPage() {
 
   useEffect(() => {
     if (inst) {
-      getEvents().then(data => {
-        // Filter events hosted by this institution
-        const instEvents = data.filter(ev => ev.institutionId === inst.id);
+      // Server-side filtered: fetches ONLY this institution's events
+      // (where institutionId == …), not the whole collection.
+      getEventsByInstitution(inst.id).then(instEvents => {
         setEvents(instEvents);
         setLoadingEvents(false);
       });

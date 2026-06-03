@@ -1,7 +1,7 @@
 import { db } from './firebase';
 import {
   collection, addDoc, doc, getDoc, getDocs, setDoc, deleteDoc,
-  query, where, orderBy,
+  query, where, orderBy, limit,
 } from 'firebase/firestore';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -19,9 +19,24 @@ export interface Post {
   relatedEventId?: string | null;
   createdAt: string;          // ISO
   createdBy: string;          // admin email/uid
+  // Admin chooses per post whether users may comment. Undefined = allowed
+  // (back-compat for posts created before this field existed).
+  commentsEnabled?: boolean;
   // Optional per-language overrides (seeded posts ship all languages).
   translations?: Partial<Record<string, { title?: string; description?: string; content?: string }>>;
 }
+
+export interface PostComment {
+  id: string;
+  postId: string;
+  userId: string;
+  userName: string;
+  text: string;
+  createdAt: string;          // ISO
+}
+
+/** Whether comments are allowed on a post (default: allowed). */
+export const commentsAllowed = (post: Post): boolean => post.commentsEnabled !== false;
 
 /** Pick title/description/content for the active language (falls back to base). */
 export function localizePost(post: Post, lang: string): { title: string; description: string; content: string } {
@@ -239,6 +254,61 @@ export async function toggleSavePost(
   return true;
 }
 
+// ── Comments (lightweight) ───────────────────────────────────────────────────
+// One flat `comments` collection, loaded only on the post page with a capped
+// query. No realtime listeners, no edits, no threads — keeps it eco-light.
+const COMMENTS_LIMIT = 100;
+
+/** Fetch a post's comments (single `where` + `limit`, sorted in memory → no index). */
+export async function getComments(postId: string): Promise<PostComment[]> {
+  try {
+    const snap = await getDocs(query(
+      collection(db, 'comments'),
+      where('postId', '==', postId),
+      limit(COMMENTS_LIMIT),
+    ));
+    return snap.docs
+      .map(d => ({ id: d.id, ...d.data() } as PostComment))
+      .sort((a, b) => a.createdAt.localeCompare(b.createdAt)); // oldest → newest
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+    return [];
+  }
+}
+
+/** Add a comment. Returns the stored comment, or null on failure. */
+export async function addComment(
+  postId: string, userId: string, userName: string, text: string,
+): Promise<PostComment | null> {
+  const body = text.trim();
+  if (!body) return null;
+  try {
+    const record = {
+      postId,
+      userId,
+      userName: userName || 'User',
+      text: body.slice(0, 500),
+      createdAt: new Date().toISOString(),
+    };
+    const ref = await addDoc(collection(db, 'comments'), record);
+    return { id: ref.id, ...record };
+  } catch (error) {
+    console.error('Error adding comment:', error);
+    return null;
+  }
+}
+
+/** Delete a comment (the author or an admin). */
+export async function deleteComment(commentId: string): Promise<boolean> {
+  try {
+    await deleteDoc(doc(db, 'comments', commentId));
+    return true;
+  } catch (error) {
+    console.error('Error deleting comment:', error);
+    return false;
+  }
+}
+
 // ── Admin analytics ──────────────────────────────────────────────────────────
 /** Aggregate engagement for a single post (admin only — needs broad read). */
 export async function getPostEngagement(postId: string): Promise<PostEngagement> {
@@ -260,9 +330,9 @@ export async function getPostEngagement(postId: string): Promise<PostEngagement>
 // ── Recommendation ranking ───────────────────────────────────────────────────
 /**
  * Lightweight, deterministic post ranking. Learns from favorite topics + the
- * user's like / not-interested signals. Posts explicitly marked not-interested
- * are dropped; categories the user dislikes are down-weighted; liked/favorite
- * categories are boosted.
+ * user's like / not-interested signals. Nothing is hidden — a "not interested"
+ * post simply SINKS to the bottom (so the user still sees their click took
+ * effect) and its category is down-weighted; liked/favorite categories rise.
  */
 export function rankPosts(
   posts: Post[],
@@ -282,17 +352,20 @@ export function rankPosts(
 
   const score = (p: Post): number => {
     let s = 0;
+    const r = reactions[p.id];
     if (interests.has(p.category)) s += 10;
     if (likedCats.has(p.category)) s += 6;
     if (dislikedCats.has(p.category)) s -= 8;
+    if (r === 'like') s += 12;
+    // Push this specific disliked post far down — but keep it visible.
+    if (r === 'not_interested') s -= 100;
     // Mild recency tiebreaker (newer first).
     s += Math.max(0, 5 - daysOld(p.createdAt) * 0.1);
     return s;
   };
 
+  // No filtering — every post stays in the feed; order reflects the signals.
   return posts
-    // Hide posts the user explicitly marked not-interested.
-    .filter(p => reactions[p.id] !== 'not_interested')
     .map(p => ({ p, s: score(p) }))
     .sort((a, b) => b.s - a.s || b.p.createdAt.localeCompare(a.p.createdAt))
     .map(x => x.p);

@@ -180,6 +180,7 @@ function CommunitySection({ user }: { user: User }) {
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
   const [form, setForm] = useState({ ...EMPTY_POST });
+  const [allowComments, setAllowComments] = useState(true);
 
   const setField = (k: keyof typeof form, v: string) => setForm(f => ({ ...f, [k]: v }));
 
@@ -205,9 +206,11 @@ function CommunitySection({ user }: { user: User }) {
         category: form.category,
         image: form.image.trim() || null,
         relatedEventId: form.relatedEventId.trim() || null,
+        commentsEnabled: allowComments,
         createdBy: user.email ?? user.uid,
       });
       setForm({ ...EMPTY_POST });
+      setAllowComments(true);
       load();
     } finally {
       setCreating(false);
@@ -256,6 +259,21 @@ function CommunitySection({ user }: { user: User }) {
             <input value={form.image} onChange={e => setField('image', e.target.value)} placeholder="https://…"
               className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-primary" />
           </div>
+          {/* Allow comments toggle */}
+          <div className="sm:col-span-2 flex items-center justify-between bg-background border border-border rounded-lg px-3 py-2.5">
+            <div>
+              <p className="text-sm text-white font-medium">{t('community', 'allowComments')}</p>
+              <p className="text-[11px] text-textMuted">{allowComments ? t('community', 'commentsOnHint') : t('community', 'commentsOffHint')}</p>
+            </div>
+            <button
+              type="button" role="switch" aria-checked={allowComments}
+              onClick={() => setAllowComments(v => !v)}
+              className={`relative w-11 h-6 rounded-full transition-colors shrink-0 ${allowComments ? 'bg-primary' : 'bg-border'}`}
+            >
+              <span className={`absolute top-0.5 start-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${allowComments ? 'translate-x-5' : 'translate-x-0'}`} />
+            </button>
+          </div>
+
           <div className="sm:col-span-2">
             <button type="submit" disabled={creating || !form.title}
               className="w-full flex justify-center items-center gap-1.5 bg-primary text-black text-sm font-semibold px-4 py-2.5 rounded-lg hover:brightness-110 transition-all disabled:opacity-50">

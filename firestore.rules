@@ -36,9 +36,17 @@ service cloud.firestore {
     }
 
     // ── Events ───────────────────────────────────────────────────────────────
+    // Any signed-in user may READ events (the public feed). Only an admin may
+    // CREATE / UPDATE / DELETE them — this is the write rule for events created
+    // from the admin panel. A created event must carry its core attributes so
+    // the `events` collection is always well-formed.
     match /events/{eventId} {
-      allow read:  if request.auth != null;
-      allow write: if request.auth != null;
+      allow read:   if request.auth != null;
+      allow create: if isAdmin()
+        && request.resource.data.title is string
+        && request.resource.data.title.size() > 0
+        && request.resource.data.date is string;
+      allow update, delete: if isAdmin();
     }
 
     // ── Registrations / tickets ──────────────────────────────────────────────
@@ -84,6 +92,20 @@ service cloud.firestore {
         && savedId.split('_')[0] == request.auth.uid
         && request.resource.data.userId == request.auth.uid;
       allow delete:         if request.auth != null && savedId.split('_')[0] == request.auth.uid;
+    }
+
+    // Comments: any signed-in user may read and post a comment as themselves
+    // (non-empty, max 500 chars). Comments are immutable (no edit). The author
+    // or an admin may delete. Whether a post accepts comments is enforced in the
+    // UI (post.commentsEnabled); rules keep ownership + size guarantees.
+    match /comments/{commentId} {
+      allow read:   if request.auth != null;
+      allow create: if request.auth != null
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 500;
+      allow delete: if isAdmin() || (request.auth != null && resource.data.userId == request.auth.uid);
     }
   }
 }
