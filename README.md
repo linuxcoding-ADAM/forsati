@@ -1,99 +1,65 @@
 <div align="center">
 
-# 🧭 FOURSSATI · فرصتي
+<img src="./public/logo.png" alt="FORSATI" width="120" />
 
-### **One gateway to every youth opportunity.**
+# FORSATI · فرصتي
 
-A modern, mobile-first community platform that centralizes the opportunities offered by **ODEJ** and local youth establishments — events, workshops, volunteering, youth centers — into a single, lightweight, accessible gateway.
+### **Discover your opportunity.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-10B981.svg)](./LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![PWA](https://img.shields.io/badge/PWA-ready-5EEAD4)](https://web.dev/progressive-web-apps/)
-[![Lighthouse](https://img.shields.io/badge/Lighthouse-95%2B-10B981)](https://developer.chrome.com/docs/lighthouse/)
-[![ECOHACK '26](https://img.shields.io/badge/ECOHACK-'26-34D399)]()
+A personalized youth-opportunity discovery platform that connects young Algerians to **ODEJ** youth establishments — built on real **ODEJ Béjaïa** data.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-22c55e.svg)](./LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-14-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![ECOHACK '26](https://img.shields.io/badge/ECOHACK-'26-16a34a)]()
+
+**Made by SUDOTeam**
 
 </div>
 
 ---
 
-> **The thesis:** Young people don't lack opportunities. They lack a simple, centralized, immediate way to reach them.
+> **The idea:** Young people don't lack opportunities — they lack a simple, centralized way to reach them.
 
 ---
 
 ## ⚡ Overview
 
-**FOURSSATI** (from the Arabic *فرصتي*, "my opportunity") is the digital bridge between young people and their community.
+**FORSATI** (from the Arabic *فرصتي*, "my opportunity") is a mobile-first web app that brings the youth opportunities offered by **ODEJ** — youth houses, sports complexes, science centers, hostels, camps — into a single place.
 
-Today, youth opportunities are scattered across Facebook pages, paper flyers, separate forms, and disconnected websites — forcing every young person to act as their own search engine. FOURSSATI replaces that fragmentation with **one gateway**, connected directly to ODEJ, where discovering and joining an opportunity takes **seconds, not an afternoon**.
+It matches each young person with the right institutions using a **deterministic recommendation engine** (interests + location), lets them register for events and check in with a **QR ticket**, and works in **four languages** including **Kabyle**.
 
-It's **fast, accessible, mobile-first**, and **efficient by design** — engineered so that the common path (browsing & discovering) never even wakes a server.
-
-> **The goal:** Centralize access. Remove friction. Reward real participation.
+The current dataset covers the **wilaya of Béjaïa (06)** and follows a schema designed to scale to all 58 wilayas.
 
 ---
 
 ## 🧩 Features
 
-- 🔍 **Smart Discover Feed** — relevant opportunities ranked by interest & location, served static-first. Transparent, rule-based ranking — _no heavy black-box model._
-- 👆 **One Tap Join** — register for anything in a single tap. No forms, no re-login.
-- 🪪 **Smart Profile** — fill your details once (`interests`, `location`, `language`); reused everywhere. The platform never asks twice.
-- 🏅 **Contribution & Impact** — levels, badges, and missions that reward real involvement, not screen time.
-- 📲 **QR Check-in** — a quick on-site scan confirms real attendance and updates your impact.
-- 🌍 **Multilingual + RTL** — Arabic & French with native right-to-left layouts (extensible to Tamazight).
-- 📶 **Low Data Mode** — strips media to the essentials for limited or costly connections.
-- 🛠️ **No-code ODEJ Dashboard** — staff publish events, validate participation, and monitor engagement without a developer.
+- 🧭 **Discover feed** — personalized institution & opportunity recommendations based on your interests and wilaya.
+- 🤖 **Assistant** — ask in natural words (e.g. *"sport in Akbou"*) and get matching ODEJ institutions, via keyword search over the local dataset.
+- 🎟️ **Events & registration** — dynamic registration forms and a **QR ticket** generated for each participant.
+- 📷 **QR check-in (admin)** — staff scan tickets on-site to confirm real attendance.
+- 🏛️ **Institutions** — browse ODEJ youth establishments with details, categories, and contact info.
+- 💬 **Community** — a simple post feed for sharing and discussion.
+- 📊 **Dashboard** — a personal view of the user's activity.
+- 🛠️ **Admin dashboard** — manage content and validate participation.
+- 🌍 **Multilingual + RTL** — **Arabic, French, English, Kabyle (kab)**, with right-to-left layout (Arabic by default).
+- 🔐 **Authentication** — email/password and Google sign-in (Firebase Auth).
+- 🚀 **Onboarding** — quick profile setup (interests, wilaya) that powers recommendations.
 
 ---
 
-## 🚀 Performance & Efficiency
+## 🌱 Efficiency by design
 
-Efficiency here is a **consequence of good engineering**, not a marketing claim. Because the architecture is static-first and edge-cached, FOURSSATI is light on networks, devices, and servers alike.
+FORSATI keeps things light on purpose — not as a marketing claim, but as engineering choices:
 
-| Metric | Target |
-| --- | --- |
-| 🟢 Lighthouse performance | **95+** |
-| 📦 First-load page weight | **< 0.4 MB** |
-| ⏱️ Time-to-Interactive | **< 1 s** |
-| 🖥️ Server compute on reads | **0** (static / edge) |
-| 🌱 Estimated CO₂ per visit | **< 0.1 g** |
-
-**How:** Dark OLED-friendly UI · edge caching · lazy loading · lightweight JSON · minimal animations · mobile-first · reduced form friction.
-
-> _All targets are independently verifiable — run Lighthouse and a public carbon calculator against the deployed build._
-
----
-
-## 🏗️ Architecture
-
-Static-first, edge-cached, query-driven — **no heavy AI in the request path**, so the system stays fast and **cannot hallucinate** ODEJ data.
-
-```
-┌──────────────┐        ┌───────────────┐
-│  Youth · PWA │        │  ODEJ · Admin │
-└──────┬───────┘        └───────┬───────┘
-       └────────────┬───────────┘
-                     ▼
-            ┌─────────────────┐
-            │   Edge / CDN    │   static-first · cache · compression
-            └────────┬────────┘
-                     ▼
-            ┌─────────────────┐
-            │     Next.js     │   SSG / ISR · React Server Components
-            └────────┬────────┘
-                     ▼
-            ┌─────────────────┐
-            │    REST API     │   Auth · Events · Participation · Impact
-            └────────┬────────┘
-                     ▼
-            ┌─────────────────┐
-            │   PostgreSQL    │   + Object Storage (optimized media)
-            └─────────────────┘
-```
-
-**Two request paths:** _reads_ (navigation, discovery) are served fully static from the edge — **0 server compute**; only _writes_ (join, check-in) reach the API, with a payload of about **1 KB**.
-
-> 📊 Detailed system, data-flow, auth, admin, and impact diagrams are available in [`/docs`](./docs).
+- 🧮 **No-AI recommendation engine** — `lib/recommend.ts` is a pure scoring function (interests + wilaya). _No model, no API calls, runs locally in ~1 ms._
+- 🔎 **Local dataset search** — the assistant reads a bundled JSON dataset, so answers come from real ODEJ data and never hallucinate.
+- 🌑 **Dark-first UI** — default `#0a0a0a` theme, OLED-friendly and easy on the eyes.
+- 🪶 **Lightweight dependencies** — `lucide-react` icons, minimal animations (`fade-in` / `fade-up`), no heavy UI framework.
+- 🖼️ **Next.js image optimization** — assets served efficiently out of the box.
 
 ---
 
@@ -101,13 +67,14 @@ Static-first, edge-cached, query-driven — **no heavy AI in the request path**,
 
 | Layer | Technology |
 | --- | --- |
-| Framework | **Next.js** (App Router, SSG/ISR, React Server Components) |
-| Language | **TypeScript** |
-| Styling | **Tailwind CSS** (dark OLED-first design system) |
-| Database | **PostgreSQL** |
-| ORM | **Prisma** |
-| Delivery | **Edge / CDN** + **PWA** (offline-capable) |
-| i18n | Arabic / French with RTL support |
+| Framework | **Next.js 14** (App Router) |
+| Language | **TypeScript**, **React 18** |
+| Styling | **Tailwind CSS** (custom dark theme) |
+| Auth | **Firebase Authentication** (email + Google) |
+| Database | **Cloud Firestore** |
+| QR | `html5-qrcode` (scanner) · `qrcode` / `qrcode.react` (tickets) |
+| Icons | `lucide-react` |
+| Data | `odej_bejaia_dataset.json` (ODEJ Béjaïa) |
 
 ---
 
@@ -115,36 +82,53 @@ Static-first, edge-cached, query-driven — **no heavy AI in the request path**,
 
 ### Prerequisites
 - **Node.js** `18+`
-- **PostgreSQL** `14+`
+- A **Firebase** project (Authentication + Firestore enabled)
 
 ### Installation
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-org>/fourssati.git
-cd fourssati
+git clone https://github.com/SUDOTeam/forsati.git
+cd forsati
 
 # 2. Install dependencies
 npm install
 
-# 3. Configure environment
-cp .env.example .env.local
-#   then fill in DATABASE_URL and auth secrets
+# 3. Configure environment — create .env.local with your Firebase keys (see below)
 
-# 4. Set up the database
-npx prisma migrate dev
-
-# 5. Run the dev server
+# 4. Run the dev server
 npm run dev
 ```
 
-Open [`http://localhost:3000`](http://localhost:3000) to view the app.
+Open [`http://localhost:3000`](http://localhost:3000).
 
-### Build for production
+### Environment variables
+
+Create a `.env.local` file at the project root:
+
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
+NEXT_PUBLIC_FIREBASE_APP_ID=...
+
+# Optional — used for absolute metadata URLs
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+### Seed the data
+
+Deploy the Firestore rules (`firestore.rules`) to your project, then visit [`/seed`](http://localhost:3000/seed) once to load the ODEJ Béjaïa dataset into Firestore.
+
+### Available scripts
 
 ```bash
-npm run build
-npm run start
+npm run dev      # start the development server
+npm run build    # production build
+npm run start    # run the production build
+npm run lint     # lint the project
 ```
 
 ---
@@ -152,56 +136,56 @@ npm run start
 ## 🗂️ Project Structure
 
 ```
-fourssati/
-├── app/                 # Next.js App Router
-│   ├── (youth)/         # Youth-facing PWA routes
-│   ├── admin/           # No-code ODEJ dashboard
-│   └── api/             # Minimal REST endpoints
-├── components/          # Reusable, lightweight UI components
-├── lib/                 # DB client, ranking rules, auth
-├── prisma/              # Schema & migrations
-├── locales/             # ar / fr translations (i18n + RTL)
-├── public/              # PWA manifest, icons, static assets
-└── docs/                # Architecture & data-flow diagrams
+forsati/
+├── app/
+│   ├── (app)/            # discover · events · institutions · community · dashboard · assistant · settings
+│   ├── (admin)/          # admin dashboard + QR scanner
+│   ├── (auth)/           # sign-in · sign-up · forgot-password
+│   ├── api/assistant/    # keyword-search endpoint over the ODEJ dataset
+│   ├── seed/             # one-time loader for the ODEJ dataset
+│   ├── layout.tsx        # root layout + providers
+│   └── page.tsx          # landing page
+├── components/           # UI: EventCard, InstitutionCard, PostCard, TicketModal,
+│                         #     DynamicRegistrationForm, Onboarding, Sidebar, BottomNav…
+├── lib/
+│   ├── firebase.ts       # Firebase init (Auth + Firestore)
+│   ├── recommend.ts      # deterministic recommendation engine (no AI)
+│   ├── events.ts · posts.ts · data.ts · admin.ts · validation.ts · localize.ts
+│   ├── contexts/         # AuthContext · LanguageContext (i18n + RTL)
+│   └── translations/     # ar · fr · en · kab
+├── odej_bejaia_dataset.json   # 68 ODEJ youth establishments (wilaya of Béjaïa)
+├── firestore.rules
+├── tailwind.config.ts · next.config.mjs · tsconfig.json
+└── public/               # logo.png · favicon.ico
 ```
 
 ---
 
 ## 🗺️ Roadmap
 
-- [ ] 🌐 Tamazight language pack
-- [ ] 📍 Onboard additional wilayas & youth establishments
-- [ ] 📴 Full offline-first synchronization
-- [ ] 📊 Open-data exports for ODEJ engagement insights
+- [ ] 🗺️ Scale beyond Béjaïa to more of Algeria's 58 wilayas (the dataset schema already supports it)
+- [ ] 📍 Geocode institutions at commune level for map views (coordinates are currently empty)
+- [ ] 📅 Structured event feed populated through the admin dashboard
+- [ ] 📴 Offline support and richer notifications
 
 ---
 
-## 👥 Team — Club Origo
+## 📚 Data
 
-Built for **ECOHACK '26** by Club Origo.
+The app is powered by **`odej_bejaia_dataset.json`** — 68 youth establishments across the wilaya of Béjaïa (code 06), organized into categories such as *Maisons de Jeunes*, sports complexes, science centers, hostels, and camps, each tagged with activity interests.
 
-| Name | Role |
-| --- | --- |
-| _Your name_ | _Role_ |
-| _Teammate_ | _Role_ |
-
-> Replace this table with your team members.
+> Data sourced from the public ODEJ Béjaïa listings (`odejbejaia-dz.com`). Verify before production use. GPS coordinates are not published at the source and must be geocoded before mapping.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](./LICENSE) file for details.
+Released under the **MIT License** — see [LICENSE](./LICENSE).
 
 ---
 
-## 🙌 Acknowledgments
-
-- **ODEJ** — for the mission of connecting youth with opportunity.
-- **ECOHACK '26** — theme: *Bridging Youth & Opportunities*.
-
 <div align="center">
 
-**FOURSSATI** · فرصتي — _the lightest possible bridge between young people and opportunity._
+**FORSATI** · فرصتي — _Discover your opportunity._ · by **SUDOTeam**
 
 </div>
