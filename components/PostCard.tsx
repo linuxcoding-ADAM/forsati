@@ -66,22 +66,22 @@ export function PostCard({ post, reaction, saved, busy, onReact, onSave }: Props
           >
             <ThumbsDown size={15} />
           </ActionBtn>
+          <ActionBtn
+            active={saved} activeClass="bg-amber-500/15 text-amber-400 border-amber-500/40"
+            disabled={busy} onClick={onSave} label={t('community', 'save')}
+          >
+            <Bookmark size={15} className={saved ? 'fill-current' : ''} />
+          </ActionBtn>
           {commentsAllowed(post) && (
             <Link
               href={`/community/${post.id}`}
               title={t('community', 'comments')}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border text-textMuted hover:text-white text-xs font-medium transition-colors"
+              className="ms-auto flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border text-textMuted hover:text-white text-xs font-medium transition-colors"
             >
               <MessageCircle size={15} />
               <span className="hidden sm:inline">{t('community', 'comments')}</span>
             </Link>
           )}
-          <ActionBtn
-            active={saved} activeClass="bg-amber-500/15 text-amber-400 border-amber-500/40"
-            disabled={busy} onClick={onSave} label={t('community', 'save')} className="ms-auto"
-          >
-            <Bookmark size={15} className={saved ? 'fill-current' : ''} />
-          </ActionBtn>
         </div>
       </div>
     </div>

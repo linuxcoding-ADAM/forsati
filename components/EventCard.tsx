@@ -1,4 +1,5 @@
-import { MapPin, Calendar, ArrowRight } from 'lucide-react';
+'use client';
+import { MapPin, Calendar, ArrowRight, Share2 } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/contexts/LanguageContext';
 import { localize, type Lang } from '@/lib/localize';
@@ -26,11 +27,36 @@ export function EventCard({ event }: { event: Event }) {
     }
   } catch { /* ignore invalid dates */ }
 
+  const handleShare = async () => {
+    const url = typeof window !== 'undefined' ? `${window.location.origin}/events/${event.id}` : '';
+    // The shared message always credits the ODEJ platform.
+    const text = `${title} — ${event.wilaya}\n${t('common', 'shareText')}\n${url}`;
+    try {
+      if (typeof navigator !== 'undefined' && navigator.share) {
+        await navigator.share({ title, text, url });
+      } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
+        await navigator.clipboard.writeText(text);
+        alert(t('common', 'linkCopied'));
+      }
+    } catch { /* user cancelled the share sheet */ }
+  };
+
   return (
     <div className="bg-surface border border-border rounded-xl p-4 hover:border-primary/40 transition-colors flex flex-col h-full">
-      <div className="mb-3">
-        <h3 className="font-bold text-white text-base leading-tight mb-1">{title}</h3>
-        <p className="text-xs text-textMuted">{instName}</p>
+      <div className="flex items-start justify-between gap-2 mb-3">
+        <div className="min-w-0">
+          <h3 className="font-bold text-white text-base leading-tight mb-1">{title}</h3>
+          <p className="text-xs text-textMuted truncate">{instName}</p>
+        </div>
+        {/* ODEJ Béjaïa official logo — pilot wilaya */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/odej-logo.png"
+          alt="ODEJ Béjaïa"
+          title="ODEJ Béjaïa"
+          className="w-9 h-9 rounded-full shrink-0 object-contain bg-white/5"
+          onError={e => { e.currentTarget.style.display = 'none'; }}
+        />
       </div>
 
       <div className="mt-auto flex flex-col gap-2 mb-4">
@@ -44,13 +70,23 @@ export function EventCard({ event }: { event: Event }) {
         </div>
       </div>
 
-      <Link 
-        href={`/events/${event.id}`}
-        className="mt-auto w-full flex items-center justify-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-semibold py-2 rounded-lg transition-colors"
-      >
-        {t('common', 'explore')}
-        <ArrowRight size={14} />
-      </Link>
+      <div className="mt-auto flex items-center gap-2">
+        <Link
+          href={`/events/${event.id}`}
+          className="flex-1 flex items-center justify-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-semibold py-2 rounded-lg transition-colors"
+        >
+          {t('common', 'explore')}
+          <ArrowRight size={14} />
+        </Link>
+        <button
+          onClick={handleShare}
+          title={t('common', 'share')}
+          aria-label={t('common', 'share')}
+          className="shrink-0 flex items-center justify-center w-9 h-9 rounded-lg border border-border text-textMuted hover:text-primary hover:border-primary/40 transition-colors"
+        >
+          <Share2 size={15} />
+        </button>
+      </div>
     </div>
   );
 }

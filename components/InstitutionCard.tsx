@@ -13,11 +13,22 @@ export function InstitutionCard({ raw, reasons }: {
 
   return (
     <div className="bg-surface border border-border rounded-xl p-4 hover:border-primary/40 transition-colors flex flex-col h-full">
-      <div className="mb-3">
-        <h3 className="font-bold text-white text-sm leading-snug line-clamp-2 mb-2">{inst.name}</h3>
-        <span className="inline-block max-w-full truncate text-[10px] text-textMuted bg-background px-2 py-0.5 rounded-full border border-border">
-          {inst.categoryName}
-        </span>
+      <div className="flex items-start justify-between gap-2 mb-3">
+        <div className="min-w-0">
+          <h3 className="font-bold text-white text-sm leading-snug line-clamp-2 mb-2">{inst.name}</h3>
+          <span className="inline-block max-w-full truncate text-[10px] text-textMuted bg-background px-2 py-0.5 rounded-full border border-border">
+            {inst.categoryName}
+          </span>
+        </div>
+        {/* ODEJ Béjaïa official logo — pilot wilaya */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/odej-logo.png"
+          alt="ODEJ Béjaïa"
+          title="ODEJ Béjaïa"
+          className="w-9 h-9 rounded-full shrink-0 object-contain bg-white/5"
+          onError={e => { e.currentTarget.style.display = 'none'; }}
+        />
       </div>
 
       <div className="flex flex-col gap-2 mb-4">
