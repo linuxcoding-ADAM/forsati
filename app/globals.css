@@ -5,8 +5,7 @@
    font-display:swap → text shows immediately in the fallback, then swaps in. */
 @font-face {
   font-family: 'Sacrifice';
-  src: url('/fonts/Sacrifice.woff2') format('woff2'),
-       url('/fonts/Sacrifice.ttf')   format('truetype');
+  src: url('/fonts/SacrificeDemo-8Ox1B.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

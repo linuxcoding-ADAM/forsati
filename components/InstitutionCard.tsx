@@ -23,7 +23,7 @@ export function InstitutionCard({ raw, reasons }: {
         {/* ODEJ Béjaïa official logo — pilot wilaya */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/odej-logo.png"
+          src="/logo_ODEJ.png"
           alt="ODEJ Béjaïa"
           title="ODEJ Béjaïa"
           className="w-9 h-9 rounded-full shrink-0 object-contain bg-white/5"
