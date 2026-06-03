@@ -1,6 +1,16 @@
 import './globals.css';
 import { AppProviders } from '@/components/providers/AppProviders';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+
+// Lock the layout on mobile: no pinch-zoom and no iOS focus-zoom (which fires
+// when an input's font-size is < 16px), so the UI stays visually stable.
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: '#0a0a0a',
+};
 
 export const metadata: Metadata = {
   // Resolves relative OG/icon URLs to absolute ones. Removes the

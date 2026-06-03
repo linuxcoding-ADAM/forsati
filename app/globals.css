@@ -1,11 +1,12 @@
 @tailwind base; @tailwind components; @tailwind utilities;
 
 /* Brand wordmark font — "Sacrifice" by Heinzel Studio.
-   Drop the font file in /public/fonts/ (Sacrifice.woff2 and/or Sacrifice.ttf).
+   Subset to printable ASCII and shipped as WOFF2 (~13 KB vs the 2.1 MB TTF) —
+   it's only ever used for short Latin wordmarks, so the full font was pure waste.
    font-display:swap → text shows immediately in the fallback, then swaps in. */
 @font-face {
   font-family: 'Sacrifice';
-  src: url('/fonts/SacrificeDemo-8Ox1B.ttf') format('truetype');
+  src: url('/fonts/Sacrifice.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

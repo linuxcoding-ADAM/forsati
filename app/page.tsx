@@ -12,9 +12,9 @@ export default function Landing() {
     <div className="min-h-screen flex flex-col bg-background text-gray-100">
       {/* Navbar */}
       <header className="flex items-center justify-between px-6 py-4 border-b border-border bg-background sticky top-0 z-50">
-        <div className="flex items-center gap-2 font-bold text-lg">
+        <div className="flex items-center gap-2.5">
           <Image src="/logo.png" alt="Forsati ODEJ" width={32} height={32} className="rounded-lg" />
-          Forsati
+          <span className="font-forsati text-2xl font-black text-white">Forsati</span>
         </div>
         <div className="flex items-center gap-3">
           <select

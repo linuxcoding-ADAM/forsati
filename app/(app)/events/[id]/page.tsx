@@ -137,16 +137,13 @@ export default function EventDetailsPage() {
       {/* Sticky Bottom Bar for Join Event.
           On mobile it must sit ABOVE the BottomNav (which occupies bottom-16),
           otherwise the nav covers the Join / View-Ticket button.
-          When already registered we drop the dark panel (no bg/border/shadow) —
-          just the confirmation + View-Ticket button floats. */}
-      <div className={`fixed bottom-16 md:bottom-0 left-0 right-0 p-4 sm:p-6 z-40 flex justify-center ${
-        isRegistered
-          ? 'pointer-events-none'
-          : 'bg-background/95 backdrop-blur-xl border-t border-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)]'
-      }`}>
+          It always carries the solid panel (bg/blur/border) — including the
+          registered state — so page content can't bleed through and overlap the
+          confirmation + View-Ticket button (it stays pinned to the bottom). */}
+      <div className="fixed bottom-16 md:bottom-0 left-0 right-0 p-4 sm:p-6 z-40 flex justify-center bg-background/95 backdrop-blur-xl border-t border-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
         <div className="max-w-[800px] w-full">
           {isRegistered ? (
-            <div className="flex items-center justify-center gap-3 flex-wrap pointer-events-auto">
+            <div className="flex items-center justify-center gap-3 flex-wrap">
               <span className="inline-flex items-center gap-1.5 text-green-400 font-semibold text-sm">
                 <CheckCircle2 size={16} /> {t('eventDetail', 'confirmed')}
               </span>

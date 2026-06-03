@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from '
 import { auth, googleProvider } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Language } from '@/lib/contexts/LanguageContext';
 
 export default function SignUpPage() {
@@ -57,11 +58,9 @@ export default function SignUpPage() {
           </select>
         </div>
 
-        <div className="flex items-center justify-center gap-2 font-bold text-xl mb-8">
-          <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-black font-bold text-xs">F</span>
-          </div>
-          Forsati
+        <div className="flex flex-col items-center gap-2 mb-8">
+          <Image src="/logo.png" alt="Forsati ODEJ" width={96} height={96} className="rounded-3xl shadow-xl shadow-primary/10" priority />
+          <span className="font-forsati font-black text-white text-3xl">Forsati</span>
         </div>
 
         <div className="bg-surface p-8 rounded-2xl border border-border">
