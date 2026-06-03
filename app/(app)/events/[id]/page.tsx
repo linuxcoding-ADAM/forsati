@@ -152,11 +152,11 @@ export default function EventDetailsPage() {
               </button>
             </div>
           ) : event.status === 'open' ? (
-            <button onClick={() => setShowForm(true)} className="w-full bg-primary text-black font-black text-xl py-5 rounded-2xl hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_30px_rgba(var(--primary),0.3)] flex justify-center items-center gap-3">
+            <button onClick={() => setShowForm(true)} className="w-full max-w-md mx-auto bg-primary text-black font-black text-xl py-5 rounded-2xl hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_30px_rgba(var(--primary),0.3)] flex justify-center items-center gap-3">
               🎟 {t('eventDetail', 'join')}
             </button>
           ) : (
-            <button disabled className="w-full bg-surface border border-border text-textMuted font-bold text-xl py-5 rounded-2xl cursor-not-allowed flex items-center justify-center gap-3">
+            <button disabled className="w-full max-w-md mx-auto bg-surface border border-border text-textMuted font-bold text-xl py-5 rounded-2xl cursor-not-allowed flex items-center justify-center gap-3">
               ⛔ {t('eventDetail', 'closed')}
             </button>
           )}

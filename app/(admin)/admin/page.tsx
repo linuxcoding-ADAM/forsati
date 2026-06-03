@@ -19,7 +19,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { isAdminUser } from '@/lib/admin';
-import { createPost, getPosts, getPostEngagement, type Post, type PostEngagement } from '@/lib/posts';
+import { createPost, deletePost, getPosts, getPostEngagement, type Post, type PostEngagement } from '@/lib/posts';
 
 const INSTITUTIONS = ODEJ_DATA.institutions as any[];
 const PAGE_SIZE = 15;
@@ -191,6 +191,14 @@ function CommunitySection({ user }: { user: User }) {
   }, []);
   useEffect(() => { load(); }, [load]);
 
+  const remove = async (post: Post) => {
+    if (!confirm(`${t('admin', 'deletePostConfirm')}\n\n"${post.title}"`)) return;
+    // Optimistic removal; reload on failure to restore the true list.
+    setPosts(prev => prev.filter(p => p.id !== post.id));
+    const ok = await deletePost(post.id);
+    if (!ok) load();
+  };
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.title) return;
@@ -300,6 +308,16 @@ function CommunitySection({ user }: { user: User }) {
                     <span className="flex items-center gap-1 text-red-400"><ThumbsDown size={13} /> {e?.notInterested ?? 0}</span>
                     <span className="flex items-center gap-1 text-amber-400"><Bookmark size={13} /> {e?.saved ?? 0}</span>
                     <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-bold">{e?.rate ?? 0}%</span>
+                    {!post.id.startsWith('demo-') && (
+                      <button
+                        onClick={() => remove(post)}
+                        title={t('admin', 'deletePost')}
+                        aria-label={t('admin', 'deletePost')}
+                        className="text-red-400 hover:text-red-300 p-1.5 rounded-lg hover:bg-red-500/10 transition-colors"
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    )}
                   </div>
                 </div>
               );

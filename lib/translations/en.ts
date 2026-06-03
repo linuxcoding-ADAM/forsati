@@ -276,6 +276,8 @@ export const en = {
     category: "Category",
     createPost: "Create Post",
     publishPost: "Publish Post",
+    deletePost: "Delete announcement",
+    deletePostConfirm: "Delete this announcement permanently?",
     communityAnalytics: "Community Analytics",
   },
   community: {

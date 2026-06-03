@@ -274,6 +274,8 @@ export const kab = {
     category: "Taggayt",
     createPost: "Snulfu-d tasuffeɣt",
     publishPost: "Suffeɣ",
+    deletePost: "Kkes alɣu",
+    deletePostConfirm: "Kkes alɣu-a i lebda?",
     communityAnalytics: "Tisleḍt n tmɣiwant",
   },
   community: {

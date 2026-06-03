@@ -82,6 +82,19 @@ export async function createPost(
   }
 }
 
+/** Delete a post/announcement (admin only — enforced by Firestore rules).
+ *  Demo/seed posts live in code, not Firestore, so they can't be deleted. */
+export async function deletePost(id: string): Promise<boolean> {
+  if (id.startsWith('demo-')) return false; // seed posts aren't stored in Firestore
+  try {
+    await deleteDoc(doc(db, 'posts', id));
+    return true;
+  } catch (error) {
+    console.error('Error deleting post:', error);
+    return false;
+  }
+}
+
 // ── Seed posts ───────────────────────────────────────────────────────────────
 // Always-present sample posts so the Community Feed is never empty (mirrors the
 // demo-events approach). Real posts created via the admin panel sit alongside

@@ -274,6 +274,8 @@ export const ar = {
     category: "الفئة",
     createPost: "إنشاء منشور",
     publishPost: "نشر",
+    deletePost: "حذف الإعلان",
+    deletePostConfirm: "حذف هذا الإعلان نهائياً؟",
     communityAnalytics: "تحليلات المجتمع",
   },
   community: {

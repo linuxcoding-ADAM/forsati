@@ -274,6 +274,8 @@ export const fr = {
     category: "Catégorie",
     createPost: "Créer une publication",
     publishPost: "Publier",
+    deletePost: "Supprimer l'annonce",
+    deletePostConfirm: "Supprimer définitivement cette annonce ?",
     communityAnalytics: "Statistiques communauté",
   },
   community: {
