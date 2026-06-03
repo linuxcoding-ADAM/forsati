@@ -1,8 +1,8 @@
 'use client';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/contexts/LanguageContext';
-import { localizePost, type Post, type Reaction } from '@/lib/posts';
-import { ThumbsUp, ThumbsDown, Bookmark, CalendarDays } from 'lucide-react';
+import { localizePost, commentsAllowed, type Post, type Reaction } from '@/lib/posts';
+import { ThumbsUp, ThumbsDown, Bookmark, CalendarDays, MessageCircle } from 'lucide-react';
 
 interface Props {
   post: Post;
@@ -66,6 +66,16 @@ export function PostCard({ post, reaction, saved, busy, onReact, onSave }: Props
           >
             <ThumbsDown size={15} />
           </ActionBtn>
+          {commentsAllowed(post) && (
+            <Link
+              href={`/community/${post.id}`}
+              title={t('community', 'comments')}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border text-textMuted hover:text-white text-xs font-medium transition-colors"
+            >
+              <MessageCircle size={15} />
+              <span className="hidden sm:inline">{t('community', 'comments')}</span>
+            </Link>
+          )}
           <ActionBtn
             active={saved} activeClass="bg-amber-500/15 text-amber-400 border-amber-500/40"
             disabled={busy} onClick={onSave} label={t('community', 'save')} className="ms-auto"
