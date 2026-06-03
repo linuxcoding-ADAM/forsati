@@ -7,6 +7,7 @@ import { Sidebar } from '@/components/Sidebar';
 import { BottomNav } from '@/components/BottomNav';
 import { Onboarding } from '@/components/Onboarding';
 import { SplashScreen } from '@/components/SplashScreen';
+import { OdejCorner } from '@/components/OdejCorner';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { user, preferences, loading } = useAuth();
@@ -49,6 +50,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       <BottomNav />
+      <OdejCorner />
     </div>
   );
 }

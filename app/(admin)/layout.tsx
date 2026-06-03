@@ -1,5 +1,6 @@
 import '@/app/globals.css';
 import { AppProviders } from '@/components/providers/AppProviders';
+import { OdejCorner } from '@/components/OdejCorner';
 
 export const metadata = {
   title: 'Admin | Forsati ODEJ',
@@ -12,6 +13,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <AppProviders>
       <div className="min-h-screen bg-background text-gray-100">
         {children}
+        <OdejCorner />
       </div>
     </AppProviders>
   );

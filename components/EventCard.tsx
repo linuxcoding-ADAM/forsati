@@ -43,20 +43,11 @@ export function EventCard({ event }: { event: Event }) {
 
   return (
     <div className="bg-surface border border-border rounded-xl p-4 hover:border-primary/40 transition-colors flex flex-col h-full">
-      <div className="flex items-start justify-between gap-2 mb-3">
+      <div className="mb-3">
         <div className="min-w-0">
           <h3 className="font-bold text-white text-base leading-tight mb-1">{title}</h3>
           <p className="text-xs text-textMuted truncate">{instName}</p>
         </div>
-        {/* ODEJ Béjaïa official logo — pilot wilaya */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/logo_ODEJ.png"
-          alt="ODEJ Béjaïa"
-          title="ODEJ Béjaïa"
-          className="w-9 h-9 rounded-full shrink-0 object-contain bg-white/5"
-          onError={e => { e.currentTarget.style.display = 'none'; }}
-        />
       </div>
 
       <div className="mt-auto flex flex-col gap-2 mb-4">

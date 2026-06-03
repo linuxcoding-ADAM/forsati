@@ -44,11 +44,8 @@ export default function Landing() {
             <Image src="/logo.png" alt="Forsati" width={128} height={128} className="rounded-3xl shadow-2xl shadow-primary/20" priority />
           </div>
 
-          {/* National scope badge */}
-          <div className="flex items-center gap-2 mb-6">
-            <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-xs font-semibold rounded-full">
-              🇩🇿 {t('landing', 'nationalBadge')}
-            </span>
+          {/* Pilot scope badge */}
+          <div className="flex items-center justify-center mb-6">
             <span className="px-3 py-1 bg-surface border border-border text-textMuted text-xs font-medium rounded-full">
               {t('landing', 'pilotBadge')}
             </span>

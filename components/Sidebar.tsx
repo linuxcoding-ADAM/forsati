@@ -80,9 +80,6 @@ export function Sidebar() {
             >
               Forsati
             </span>
-            <span className="block text-[10px] text-textMuted leading-tight mt-0.5 font-medium tracking-wide uppercase">
-              Algeria · All 58 Wilayas
-            </span>
           </div>
         )}
       </div>
