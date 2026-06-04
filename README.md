@@ -1,286 +1,169 @@
 <div align="center">
 
-<br/>
+<!-- Animated Header Banner -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0a0a0a&height=200&section=header&text=FORSATI%20·%20فرصتي&fontSize=60&fontColor=ffffff&animation=fadeIn&desc=Discover%20Your%20Opportunity&descAlignY=70&descAlign=62" width="100%" alt="Forsati Header"/>
 
-<img src="./public/logo.png" alt="FORSATI Logo" width="100" style="border-radius: 20px;" />
+**A personalized youth-opportunity discovery platform connecting young Algerians to ODEJ youth establishments.**
 
-<br/>
+🏆 **Proudly Built for EcoHack Chellata by SUDOTeam** 🏆
 
-# FORSATI · فرصتي
+[![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)](#)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](#)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](#)
+[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](#)
 
-> **"Discover your opportunity."**
-
-<br/>
-
-![Made with Love](https://img.shields.io/badge/Made%20with-%E2%9D%A4-ff6b6b?style=for-the-badge)
-[![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](./LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-14-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-
-<br/>
-
-[![ECOHACK Chellata](https://img.shields.io/badge/🌿_ECOHACK-Chellata_2026-16a34a?style=for-the-badge)](https://github.com/SUDOTeam/forsati)
-
-<br/>
-
----
-
-*A personalized youth-opportunity discovery platform connecting young Algerians to **ODEJ** youth establishments — built on real **ODEJ Béjaïa** data.*
-
----
+[Explore Features](#✨-features) • [Getting Started](#📦-getting-started) • [Tech Stack](#🧱-tech-stack) • [The Team](#👥-meet-the-team)
 
 </div>
 
-<br/>
+---
 
-## 🧠 The Idea
+## 🧠 The Vision
 
-> Young people don't lack opportunities — they lack a **simple, centralized way to reach them.**
+> *Young people don't lack opportunities — they lack a simple, centralized way to reach them.*
 
-**FORSATI** (from the Arabic *فرصتي* — *"my opportunity"*) is a mobile-first web app that brings the youth opportunities offered by **ODEJ** — youth houses, sports complexes, science centers, hostels, camps — into a **single place**.
+**FORSATI** (from the Arabic فرصتي — *"my opportunity"*) is a premium, mobile-first web application designed to bring youth opportunities offered by ODEJ (youth houses, sports complexes, science centers, hostels, and camps) into a single, accessible hub.
 
-It matches each young person with the right institutions using a **deterministic recommendation engine** (interests + location), lets them register for events and check in with a **QR ticket**, and works in **four languages** including **Kabyle**.
+By utilizing a deterministic recommendation engine (matching interests with location), FORSATI connects youth with the right institutions, allows seamless event registration with **QR-coded ticketing**, and breaks language barriers by offering full support in **4 languages (including Kabyle and RTL Arabic)**.
 
-The current dataset covers the **wilaya of Béjaïa (06)** and follows a schema designed to scale to all **58 wilayas**.
-
-<br/>
+<div align="center">
+  <!-- 💡 TIP: Drop a GIF of your app working here! -->
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/NextJS-Dark.svg" width="0" height="0">
+  <br/>
+  <i>[ 📱 Drop a GIF or Screenshot of the Forsati Mobile UI here ]</i>
+  <br/><br/>
+</div>
 
 ---
 
 ## ✨ Features
 
-<br/>
+We built FORSATI to be feature-rich yet incredibly lightweight. 
 
 | Feature | Description |
-|---|---|
-| 🧭 **Discover Feed** | Personalized institution & opportunity recommendations based on your interests and wilaya |
-| 🤖 **Smart Assistant** | Ask in natural words (*"sport in Akbou"*) — matched against the real ODEJ dataset, zero hallucination |
-| 🎟️ **Events & QR Tickets** | Dynamic registration forms + QR ticket generated for each participant |
-| 📷 **QR Check-in** | Admin staff scan tickets on-site to confirm real attendance |
-| 🏛️ **Institutions Browser** | Explore ODEJ youth establishments with details, categories, and contact info |
-| 💬 **Community Feed** | Post feed for sharing and discussion among youth |
-| 📊 **Personal Dashboard** | Your activity, registrations, and history in one view |
-| 🛠️ **Admin Dashboard** | Manage content and validate participation |
-| 🌍 **Multilingual + RTL** | Arabic, French, English & **Kabyle (kab)** with full RTL support |
-| 🔐 **Authentication** | Email/password and Google sign-in via Firebase Auth |
-| 🚀 **Smart Onboarding** | Quick profile setup (interests, wilaya) that powers recommendations |
-
-<br/>
+| :--- | :--- |
+| 🧭 **Discover Feed** | Personalized institution & opportunity recommendations based on your exact interests and Wilaya. |
+| 🤖 **Smart Assistant** | Ask in natural words (*"sport in Akbou"*). Matched against the real ODEJ dataset with **zero hallucination**. |
+| 🎟️ **Events & QR Tickets** | Dynamic registration forms that generate a unique QR ticket for every participant. |
+| 📷 **QR Check-in** | Admin dashboard with a built-in scanner to confirm real-time attendance on-site. |
+| 🏛️ **Institutions Browser**| Explore ODEJ youth establishments with deep details, categories, and direct contact info. |
+| 💬 **Community Feed** | A built-in social feed for sharing, networking, and discussion among local youth. |
+| 🌍 **Multilingual + RTL** | Seamlessly switch between **Arabic, French, English, and Kabyle (kab)** with flawless RTL support. |
+| 🚀 **Smart Onboarding** | Frictionless profile setup that powers our recommendation engine instantly. |
 
 ---
 
 ## 🌱 Efficiency by Design
 
-FORSATI is light on purpose — not as a claim, but as engineering decisions:
+FORSATI is light on purpose. This isn't just a claim; it's a series of strict engineering decisions:
 
-- 🧮 **Zero-AI Recommendation Engine** — `lib/recommend.ts` is a pure scoring function (interests × wilaya). No model, no API calls. Runs locally in **~1 ms**.
-- 🔎 **Local Dataset Search** — The assistant reads a bundled JSON dataset, so answers come from real ODEJ data and **never hallucinate**.
-- 🌑 **Dark-first UI** — Default `#0a0a0a` theme. OLED-friendly, easy on the eyes.
-- 🪶 **Lightweight Stack** — `lucide-react` icons, minimal animations, no heavy UI framework bloat.
-- 🖼️ **Next.js Image Optimization** — Assets served efficiently out of the box.
-
-<br/>
+*   🧮 **Zero-AI Recommendation Engine:** `lib/recommend.ts` is a pure scoring function (interests × wilaya). No heavy models, no expensive API calls. It runs locally in **~1 ms**.
+*   🔎 **Local Dataset Search:** The assistant reads a bundled JSON dataset. Answers come from *real* ODEJ data—it is mathematically impossible to hallucinate.
+*   🌑 **Dark-first UI:** A sleek `#0a0a0a` default theme. OLED-friendly, battery-saving, and easy on the eyes.
+*   🪶 **Lightweight Stack:** Powered by `lucide-react` icons and minimal animations to avoid UI framework bloat.
+*   🖼️ **Next.js Edge Optimization:** Images and assets are served efficiently out-of-the-box.
 
 ---
 
 ## 🧱 Tech Stack
 
-<br/>
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=nextjs,ts,react,tailwind,firebase,git,nodejs" alt="Tech Stack" />
+</div>
 
-| Layer | Technology |
-|---|---|
+<br>
+
+| Layer | Technology Used |
+| :--- | :--- |
 | **Framework** | Next.js 14 (App Router) |
-| **Language** | TypeScript · React 18 |
-| **Styling** | Tailwind CSS (custom dark theme) |
-| **Auth** | Firebase Authentication (email + Google) |
-| **Database** | Cloud Firestore |
-| **QR** | `html5-qrcode` (scanner) · `qrcode` / `qrcode.react` (tickets) |
-| **Icons** | `lucide-react` |
-| **Data** | `odej_bejaia_dataset.json` — 68 ODEJ Béjaïa establishments |
-
-<br/>
+| **Language** | TypeScript, React 18 |
+| **Styling** | Tailwind CSS (Custom Dark Theme) |
+| **Auth & DB**| Firebase Auth (Email/Google) & Cloud Firestore |
+| **QR Tech** | `html5-qrcode` (Scanner) / `qrcode.react` (Ticketing) |
+| **Dataset** | `odej_bejaia_dataset.json` (68 Establishments) |
 
 ---
 
 ## 📦 Getting Started
 
 ### Prerequisites
-
-- **Node.js** `18+`
-- A **Firebase** project with Authentication + Firestore enabled
+* **Node.js 18+**
+* A Firebase Project (with Authentication & Firestore enabled)
 
 ### Installation
 
+**1. Clone the repository**
 ```bash
-# 1. Clone the repository
 git clone https://github.com/SUDOTeam/forsati.git
 cd forsati
-
-# 2. Install dependencies
+2. Install dependencies
+code
+Bash
 npm install
-
-# 3. Set up environment variables (see below)
-
-# 4. Start the dev server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) 🚀
-
-<br/>
-
-### Environment Variables
-
-Create a `.env.local` file at the project root:
-
-```env
-NEXT_PUBLIC_FIREBASE_API_KEY=...
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
-NEXT_PUBLIC_FIREBASE_APP_ID=...
-
-# Optional — used for absolute metadata URLs
+3. Set up environment variables
+Create a .env.local file at the root of the project:
+code
+Env
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
-```
-
-<br/>
-
-### Seed the Data
-
-Deploy the Firestore rules (`firestore.rules`) to your project, then visit [`/seed`](http://localhost:3000/seed) **once** to load the ODEJ Béjaïa dataset into Firestore.
-
-<br/>
-
-### Available Scripts
-
-```bash
-npm run dev      # Start the development server
-npm run build    # Production build
-npm run start    # Run the production build
-npm run lint     # Lint the project
-```
-
-<br/>
-
----
-
-## 🗂️ Project Structure
-
-```
+4. Seed the Database (One-time setup)
+Deploy your Firestore rules (firestore.rules), start the dev server, and visit http://localhost:3000/seed once to securely load the ODEJ Béjaïa dataset into your Firestore.
+5. Launch the App
+code
+Bash
+npm run dev
+Open http://localhost:3000 to see the app in action 🚀.
+🗂️ Project Architecture
+<details>
+<summary><b>Click to expand folder structure</b></summary>
+code
+Text
 forsati/
 ├── app/
-│   ├── (app)/            # discover · events · institutions · community · dashboard · assistant · settings
+│   ├── (app)/            # discover · events · institutions · community · dashboard · assistant 
 │   ├── (admin)/          # admin dashboard + QR scanner
 │   ├── (auth)/           # sign-in · sign-up · forgot-password
 │   ├── api/assistant/    # keyword-search endpoint over the ODEJ dataset
 │   ├── seed/             # one-time loader for the ODEJ dataset
 │   ├── layout.tsx        # root layout + providers
 │   └── page.tsx          # landing page
-│
-├── components/           # EventCard · InstitutionCard · PostCard · TicketModal
-│                         # DynamicRegistrationForm · Onboarding · Sidebar · BottomNav
-│
+├── components/           # UI Components (Cards, Modals, Forms, Navbars)
 ├── lib/
-│   ├── firebase.ts       # Firebase init (Auth + Firestore)
+│   ├── firebase.ts       # Firebase config
 │   ├── recommend.ts      # Deterministic recommendation engine (no AI)
-│   ├── events.ts · posts.ts · data.ts · admin.ts · validation.ts · localize.ts
 │   ├── contexts/         # AuthContext · LanguageContext (i18n + RTL)
 │   └── translations/     # ar · fr · en · kab
-│
-├── odej_bejaia_dataset.json   # 68 ODEJ youth establishments (wilaya of Béjaïa)
-├── firestore.rules
-├── tailwind.config.ts
-├── next.config.mjs
-├── tsconfig.json
-└── public/               # logo.png · favicon.ico
+├── odej_bejaia_dataset.json   # 68 ODEJ youth establishments (Béjaïa)
+└── tailwind.config.ts
+</details>
+🗺️ Roadmap & Data
+The Dataset:
+Powered by odej_bejaia_dataset.json — featuring 68 real youth establishments across the wilaya of Béjaïa (06), strictly organized into Maisons de Jeunes, Sports Complexes, Science Centers, and Hostels/Camps.
+(Note: Data sourced from public ODEJ Béjaïa listings. Verify before prod).
+Future Updates:
+
+🗺️ National Scale: Expand dataset to cover all 58 Algerian wilayas.
+
+📍 Interactive Maps: Geocode institutions at the commune level.
+
+📅 Admin Event Feed: Structured event feed populated directly from the ODEJ dashboard.
+
+📴 Offline Mode: PWA support with rich push notifications.
+
+📱 Native Mobile: Port to React Native / Expo.
+👥 Meet the Team
+<div align="center">
+<b>Built with 💚 by SUDOTeam at EcoHack Chellata</b><br><br>
+👨‍💻 Adam Mila	👨‍💻 Syphax Ait Kheddache	👨‍💻 Mouhamed Amine Yata
+</div>
+<div align="center">
+<p>Released under the <a href="LICENSE">MIT License</a>.</p>
+<b>FORSATI · فرصتي — Discover your opportunity.</b>
+</div>
 ```
-
-<br/>
-
----
-
-## 🗺️ Roadmap
-
-- [ ] 🗺️ Scale to more of Algeria's **58 wilayas** — the dataset schema already supports it
-- [ ] 📍 Geocode institutions at commune level for **map views**
-- [ ] 📅 Structured **event feed** populated through the admin dashboard
-- [ ] 📴 **Offline support** and richer push notifications
-- [ ] 📱 Native mobile app (React Native / Expo)
-
-<br/>
-
----
-
-## 📚 Data
-
-The app is powered by **`odej_bejaia_dataset.json`** — **68 youth establishments** across the wilaya of Béjaïa (code 06), organized into categories:
-
-- 🏠 Maisons de Jeunes
-- 🏋️ Sports Complexes
-- 🔬 Science Centers
-- 🏕️ Youth Hostels & Camps
-
-Each establishment is tagged with activity interests and wilaya metadata.
-
-> ⚠️ Data sourced from public ODEJ Béjaïa listings ([odejbejaia-dz.com](https://odejbejaia-dz.com)). Verify before production use. GPS coordinates are not published at the source and must be geocoded before mapping.
-
-<br/>
-
----
-
-## 👥 Team
-
-<br/>
-
-<div align="center">
-
-Built with 💚 at **EcoHack Chellata 2026**
-
-<br/>
-
-| | Name |
-|---|---|
-| 👨‍💻 | **Adam** |
-| 👨‍💻 | **Mila** |
-| 👨‍💻 | **Yata** |
-| 👨‍💻 | **Moha** |
-| 👨‍💻 | **Ait Kheddache Syphax** |
-
-<br/>
-
-*Team **SUDOTeam** · FORSATI · فرصتي*
-
-</div>
-
-<br/>
-
----
-
-## 📄 License
-
-Released under the **MIT License** — see [LICENSE](./LICENSE) for details.
-
-<br/>
-
----
-
-<div align="center">
-
-<br/>
-
-**FORSATI** · فرصتي
-
-*Discover your opportunity.*
-
-<br/>
-
-[![GitHub](https://img.shields.io/badge/GitHub-SUDOTeam-181717?style=for-the-badge&logo=github)](https://github.com/SUDOTeam/forsati)
-[![ECOHACK Chellata](https://img.shields.io/badge/🌿_ECOHACK-Chellata_2026-16a34a?style=for-the-badge)](https://github.com/SUDOTeam/forsati)
-
-<br/>
-
-</div>
