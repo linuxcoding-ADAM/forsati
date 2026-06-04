@@ -1,19 +1,14 @@
 <div align="center">
 
-<!-- Animated Header Banner matching your Dark/Green theme -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0a0a0a&height=200&section=header&text=FORSATI%20·%20فرصتي&fontSize=60&fontColor=22c55e&animation=fadeIn&desc=Discover%20Your%20Opportunity&descAlignY=70&descAlign=62&descSize=20&descColor=ffffff" width="100%" alt="Forsati Header"/>
+<!-- Animated Header Banner: black → green gradient waves with twinkling animation -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,40:052e16,80:16a34a,100:22c55e&height=230&section=header&text=FORSATI%20·%20فرصتي&fontSize=60&fontColor=22c55e&animation=twinkling&desc=Discover%20Your%20Opportunity&descAlignY=72&descAlign=62&descSize=20&descColor=ffffff&stroke=22c55e&strokeWidth=1" width="100%" alt="Forsati Animated Header"/>
 
-<!-- App Logo & ODEJ Logo side by side -->
-<table border="0">
-  <tr>
-    <td align="center"><img src="./docs/logo.png" alt="Forsati App Logo" width="150"/></td>
-    <td align="center"><img src="./docs/logo-odej.jpg" alt="ODEJ Béjaïa Official Logo" width="150"/></td>
-  </tr>
-  <tr>
-    <td align="center"><sub><b>FORSATI App</b></sub></td>
-    <td align="center"><sub><b>ODEJ — Wilaya de Béjaïa</b></sub></td>
-  </tr>
-</table>
+<!-- App Logo & ODEJ Logo — transparent, side by side -->
+<p align="center">
+  <img src="./docs/logo.png" alt="Forsati App Logo" width="170"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./docs/logo-odej.png" alt="ODEJ Béjaïa Official Logo" width="170"/>
+</p>
 
 **A personalized youth-opportunity discovery platform connecting young Algerians to ODEJ youth establishments.**
 
@@ -21,19 +16,19 @@
 
 <br />
 
-### 🚀 [Experience FORSATI Live Here](https://forsatii.vercel.app/) 🚀
+### 🚀 <a href="https://forsatii.vercel.app/" target="_blank" rel="noopener noreferrer">Experience FORSATI Live Here</a> 🚀
 
 <br />
 
-<!-- Clickable Badges -->
-[![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-22c55e.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Carbon Rating](https://img.shields.io/badge/Carbon_Rating-A%2B_·_Cleaner_than_95%25-22c55e?style=for-the-badge&logo=leaflet&logoColor=white)](https://www.websitecarbon.com/website/forsatii-vercel-app/)
+<!-- Clickable Badges (open in new tab) -->
+<a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js"/></a>
+<a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></a>
+<a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"/></a>
+<a href="https://firebase.google.com/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase"/></a>
+<a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/License-MIT-22c55e.svg?style=for-the-badge" alt="License: MIT"/></a>
+<a href="https://www.websitecarbon.com/website/forsatii-vercel-app/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Carbon_Rating-A%2B_·_Cleaner_than_95%25-22c55e?style=for-the-badge&logo=leaflet&logoColor=white" alt="Carbon Rating A+"/></a>
 
-[Explore Features](#✨-features) • [Gallery](#📸-app-gallery) • [Low Carbon](#-a-low-carbon-website-by-design) • [Getting Started](#📦-getting-started) • [Tech Stack](#🧱-tech-stack) • [The Team](#👥-meet-the-team)
+[Explore Features](#✨-features) • [Gallery](#📸-app-gallery) • [Low Carbon](#-a-low-carbon-website--by-design) • [Getting Started](#📦-getting-started) • [Tech Stack](#🧱-tech-stack) • [Contact](#-contact--follow-the-developers)
 
 </div>
 
@@ -110,7 +105,7 @@ FORSATI is light on purpose. This isn't just a claim; it's a series of strict en
 
 ## 🌍 A+ Low-Carbon Website — By Design
 
-All of those engineering decisions add up to something measurable. FORSATI was independently tested by **[Website Carbon Calculator](https://www.websitecarbon.com/website/forsatii-vercel-app/)** and earned the highest possible rating:
+All of those engineering decisions add up to something measurable. FORSATI was independently tested by <a href="https://www.websitecarbon.com/website/forsatii-vercel-app/" target="_blank" rel="noopener noreferrer"><b>Website Carbon Calculator</b></a> and earned the highest possible rating:
 
 <div align="center">
 
@@ -118,7 +113,7 @@ All of those engineering decisions add up to something measurable. FORSATI was i
 
 ### 🏅 Carbon Rating: **A+** — Cleaner than **95%** of all web pages globally
 
-🔗 **Verify it yourself:** [websitecarbon.com/website/forsatii-vercel-app](https://www.websitecarbon.com/website/forsatii-vercel-app/)
+🔗 <b>Verify it yourself:</b> <a href="https://www.websitecarbon.com/website/forsatii-vercel-app/" target="_blank" rel="noopener noreferrer">websitecarbon.com/website/forsatii-vercel-app</a>
 
 </div>
 
@@ -129,12 +124,12 @@ This matters because the web has a real environmental cost: every byte transferr
 ## 🧱 Tech Stack
 
 <div align="center">
-  <a href="https://nextjs.org/"><img src="https://skillicons.dev/icons?i=nextjs" alt="Next.js" /></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://skillicons.dev/icons?i=ts" alt="TypeScript" /></a>
-  <a href="https://react.dev/"><img src="https://skillicons.dev/icons?i=react" alt="React" /></a>
-  <a href="https://tailwindcss.com/"><img src="https://skillicons.dev/icons?i=tailwind" alt="Tailwind CSS" /></a>
-  <a href="https://firebase.google.com/"><img src="https://skillicons.dev/icons?i=firebase" alt="Firebase" /></a>
-  <a href="https://git-scm.com/"><img src="https://skillicons.dev/icons?i=git" alt="Git" /></a>
+  <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer"><img src="https://skillicons.dev/icons?i=nextjs" alt="Next.js" /></a>
+  <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer"><img src="https://skillicons.dev/icons?i=ts" alt="TypeScript" /></a>
+  <a href="https://react.dev/" target="_blank" rel="noopener noreferrer"><img src="https://skillicons.dev/icons?i=react" alt="React" /></a>
+  <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer"><img src="https://skillicons.dev/icons?i=tailwind" alt="Tailwind CSS" /></a>
+  <a href="https://firebase.google.com/" target="_blank" rel="noopener noreferrer"><img src="https://skillicons.dev/icons?i=firebase" alt="Firebase" /></a>
+  <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer"><img src="https://skillicons.dev/icons?i=git" alt="Git" /></a>
 </div>
 
 <br>
@@ -191,7 +186,7 @@ Deploy your Firestore rules (`firestore.rules`), start the dev server, and visit
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the app in action 🚀.
+Open <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">http://localhost:3000</a> to see the app in action 🚀.
 
 ---
 
@@ -245,13 +240,42 @@ Powered by `odej_bejaia_dataset.json` — featuring **68 real youth establishmen
 ## 👥 Meet the Team
 
 <div align="center">
-<b>Built with 💚 by SUDOTeam at EcoHack Chellata</b><br><br>
+
+<b>Built with 💚 by SUDOTeam at EcoHack Chellata</b>
+
+<br/>
+
 👨‍💻 Adam Mila &nbsp;·&nbsp; 👨‍💻 Syphax Ait Kheddache &nbsp;·&nbsp; 👨‍💻 Mouhamed Amine Yata
+
+</div>
+
+---
+
+## 📬 Contact — Follow the Developers
+
+<div align="center">
+
+Got a question, an idea, or want to collaborate? Reach out to us directly on Instagram:
+
+<br/>
+
+<a href="https://www.instagram.com/_adam_mila_?igsh=MTJ1em5kN3dneHlnNQ==" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Adam_Mila-@__adam__mila__-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Adam Mila on Instagram"/></a>
+&nbsp;
+<a href="https://www.instagram.com/syphax_aitkhe?igsh=eGQ1ZGR2cWFkdDJv" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Syphax_Ait_Kheddache-@syphax__aitkhe-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Syphax Ait Kheddache on Instagram"/></a>
+&nbsp;
+<a href="https://www.instagram.com/prvtt_mo7aa?igsh=MWtzdnp1ZWZ5dTh6aw==" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Mouhamed_Amine_Yata-@prvtt__mo7aa-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Mouhamed Amine Yata on Instagram"/></a>
+
 </div>
 
 ---
 
 <div align="center">
-<p>Released under the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
+
+<p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a>.</p>
+
 <b>FORSATI · فرصتي — Discover your opportunity.</b>
+
 </div>
+
+<!-- Animated Footer: matching black → green gradient waves -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:22c55e,20:16a34a,60:052e16,100:0a0a0a&height=140&section=footer&animation=twinkling" width="100%" alt="Forsati Animated Footer"/>
