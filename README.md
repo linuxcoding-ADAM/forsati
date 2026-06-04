@@ -3,6 +3,18 @@
 <!-- Animated Header Banner matching your Dark/Green theme -->
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0a0a0a&height=200&section=header&text=FORSATI%20·%20فرصتي&fontSize=60&fontColor=22c55e&animation=fadeIn&desc=Discover%20Your%20Opportunity&descAlignY=70&descAlign=62&descSize=20&descColor=ffffff" width="100%" alt="Forsati Header"/>
 
+<!-- App Logo & ODEJ Logo side by side -->
+<table border="0">
+  <tr>
+    <td align="center"><img src="./docs/logo.png" alt="Forsati App Logo" width="150"/></td>
+    <td align="center"><img src="./docs/logo-odej.jpg" alt="ODEJ Béjaïa Official Logo" width="150"/></td>
+  </tr>
+  <tr>
+    <td align="center"><sub><b>FORSATI App</b></sub></td>
+    <td align="center"><sub><b>ODEJ — Wilaya de Béjaïa</b></sub></td>
+  </tr>
+</table>
+
 **A personalized youth-opportunity discovery platform connecting young Algerians to ODEJ youth establishments.**
 
 🏆 **Proudly Built for EcoHack Chellata by SUDOTeam** 🏆
@@ -19,8 +31,9 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22c55e.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Carbon Rating](https://img.shields.io/badge/Carbon_Rating-A%2B_·_Cleaner_than_95%25-22c55e?style=for-the-badge&logo=leaflet&logoColor=white)](https://www.websitecarbon.com/website/forsatii-vercel-app/)
 
-[Explore Features](#✨-features) • [Gallery](#📸-app-gallery) • [Getting Started](#📦-getting-started) • [Tech Stack](#🧱-tech-stack) • [The Team](#👥-meet-the-team)
+[Explore Features](#✨-features) • [Gallery](#📸-app-gallery) • [Low Carbon](#-a-low-carbon-website-by-design) • [Getting Started](#📦-getting-started) • [Tech Stack](#🧱-tech-stack) • [The Team](#👥-meet-the-team)
 
 </div>
 
@@ -88,9 +101,28 @@ FORSATI is light on purpose. This isn't just a claim; it's a series of strict en
 
 *   🧮 **Zero-AI Recommendation Engine:** `lib/recommend.ts` is a pure scoring function (interests × wilaya). No heavy models, no expensive API calls. It runs locally in **~1 ms**.
 *   🔎 **Local Dataset Search:** The assistant reads a bundled JSON dataset. Answers come from *real* ODEJ data—it is mathematically impossible to hallucinate.
+*   🔥 **Targeted Firestore `where()` Queries:** We never fetch entire collections. Every read is filtered **server-side** with Firestore's `where()` clauses (e.g. `where("wilaya", "==", "06")`, `where("category", "==", "sport")`), so only the documents the user actually needs travel over the network. Fewer document reads = lower bandwidth, faster screens, lower Firebase costs, and a smaller carbon footprint.
 *   🌑 **Dark-first UI:** A sleek `#0a0a0a` default theme with `#22c55e` accents. OLED-friendly, battery-saving, and stunning.
 *   🪶 **Lightweight Stack:** Powered by `lucide-react` icons and minimal animations to avoid UI framework bloat.
 *   🖼️ **Next.js Edge Optimization:** Images and assets are served efficiently out-of-the-box.
+
+---
+
+## 🌍 A+ Low-Carbon Website — By Design
+
+All of those engineering decisions add up to something measurable. FORSATI was independently tested by **[Website Carbon Calculator](https://www.websitecarbon.com/website/forsatii-vercel-app/)** and earned the highest possible rating:
+
+<div align="center">
+
+<img src="./docs/carbon-rating.png" alt="FORSATI achieves an A+ carbon rating — cleaner than 95% of all web pages globally" width="800" style="border-radius: 8px;"/>
+
+### 🏅 Carbon Rating: **A+** — Cleaner than **95%** of all web pages globally
+
+🔗 **Verify it yourself:** [websitecarbon.com/website/forsatii-vercel-app](https://www.websitecarbon.com/website/forsatii-vercel-app/)
+
+</div>
+
+This matters because the web has a real environmental cost: every byte transferred consumes energy across data centers, networks, and devices. By shipping a minimal bundle, filtering data at the source with Firestore `where()` queries, and defaulting to an OLED-friendly dark theme, FORSATI sits in the **top 5% of the entire web** for energy efficiency — a perfect fit for a project born at **EcoHack** 🌱.
 
 ---
 
@@ -112,7 +144,7 @@ FORSATI is light on purpose. This isn't just a claim; it's a series of strict en
 | **Framework** | Next.js 14 (App Router) |
 | **Language** | TypeScript, React 18 |
 | **Styling** | Tailwind CSS (Custom Dark/Green Theme) |
-| **Auth & DB**| Firebase Auth (Email/Google) & Cloud Firestore |
+| **Auth & DB**| Firebase Auth (Email/Google) & Cloud Firestore (with server-side `where()` filtering) |
 | **QR Tech** | `html5-qrcode` (Scanner) / `qrcode.react` (Ticketing) |
 | **Dataset** | `odej_bejaia_dataset.json` (68 Establishments) |
 
