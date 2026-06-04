@@ -10,6 +10,7 @@
   <img src="./docs/logo-odej.png" alt="ODEJ Béjaïa Official Logo" width="170"/>
 </p>
 
+
 **A personalized youth-opportunity discovery platform connecting young Algerians to ODEJ youth establishments.**
 
 🏆 **Proudly Built for EcoHack Chellata by SUDOTeam** 🏆
