@@ -156,7 +156,7 @@ This matters because the web has a real environmental cost: every byte transferr
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/SUDOTeam/forsati.git
+git clone https://github.com/linuxcoding-ADAM/forsati.git
 cd forsati
 ```
 
@@ -178,9 +178,9 @@ NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-**4. Seed the Database (One-time setup)**
+**4. Seed Sample Events (Optional)**
 
-Deploy your Firestore rules (`firestore.rules`), start the dev server, and visit `http://localhost:3000/seed` once to securely load the ODEJ Béjaïa dataset into your Firestore.
+With your Firestore rules deployed, start the dev server and visit `http://localhost:3000/seed` to load the sample events into your Firestore. Note: institutions are not stored in Firestore — they are read directly from the bundled `odej_bejaia_dataset.json`, so no seeding is needed for them.
 
 **5. Launch the App**
 ```bash
@@ -203,7 +203,7 @@ forsati/
 │   ├── (admin)/          # admin dashboard + QR scanner
 │   ├── (auth)/           # sign-in · sign-up · forgot-password
 │   ├── api/assistant/    # keyword-search endpoint over the ODEJ dataset
-│   ├── seed/             # one-time loader for the ODEJ dataset
+│   ├── seed/             # sample-event loader for Firestore
 │   ├── layout.tsx        # root layout + providers
 │   └── page.tsx          # landing page
 ├── components/           # UI Components (Cards, Modals, Forms, Navbars)
